@@ -45,7 +45,7 @@ public enum TileSymbol {
 		
 		// draw the marginal shapes
 		shape.drawShape( g, orientation, TileMargin.LEFT );
-		shape.getNextTileShape().drawShape( g, orientation, TileMargin.RIGHT );
+		this.getNextTileSymbol().shape.drawShape( g, orientation, TileMargin.RIGHT );
 	}
 	
 	private final Image symbol;
@@ -88,10 +88,6 @@ public enum TileSymbol {
 				// draw octagon
 			}
 		};
-		
-		public final TileShape getNextTileShape() {
-			return TileShape.values()[ ( this.ordinal() + 1 ) % TileShape.values().length ];
-		}
 		
 		public abstract void drawShape( Graphics g, TileOrientation orientation, TileMargin margin );
 	}
