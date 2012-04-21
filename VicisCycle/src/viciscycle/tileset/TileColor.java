@@ -1,33 +1,37 @@
 /*
  * VicisCycle 2012
- * Released under GNU GPL License
+ * Released under GNU GPL License v2
  */
 package viciscycle.tileset;
 
-import java.awt.*;		// for Color
+import java.awt.Color;
+import java.awt.Graphics;
 
 /**
  * Enumeration of Tile Colors
  * @author Kineslight
  */
 public enum TileColor {
-	RED( Color.red, Color.orange ),
-	ORANGE( Color.orange, Color.yellow ),
-	YELLOW( Color.yellow, Color.green ),
-	GREEN( Color.green, Color.blue ),
-	BLUE( Color.blue, new Color( 75, 0, 130 ) ),
-	INDIGO( new Color( 75, 0, 130 ), new Color( 128, 0,128 ) ),
-	VIOLET( new Color( 128, 0,128 ), Color.red );
+
+	RED( Color.red ),
+	ORANGE( Color.orange ),
+	YELLOW( Color.yellow ),
+	GREEN( Color.green ),
+	BLUE( Color.blue ),
+	INDIGO( new Color( 75, 0, 130 ) ),
+	VIOLET( new Color( 128, 0,128 ) );
 	
-	private TileColor( Color center, Color margin ) {
-		centerColor = center;
-		marginColor = margin;
+	private TileColor( Color tileColor ) {
+		color = tileColor;
+	}
+	
+	public final TileColor getNextTileColor() {
+		return TileColor.values()[ ( this.ordinal() + 1 ) % TileColor.values().length ];
 	}
 	
 	public final void paintColors( Graphics g, TileOrientation orientation ) {
 		// paint the center and margin colors
 	}
 	
-	private final Color centerColor;
-	private final Color marginColor;
+	private final Color color;
 }

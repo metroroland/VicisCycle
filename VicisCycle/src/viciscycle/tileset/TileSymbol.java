@@ -1,12 +1,14 @@
 /*
  * VicisCycle 2012
- * Released under GNU GPL License
+ * Released under GNU GPL License v2
  */
 package viciscycle.tileset;
 
-import java.awt.*;			// for Image, Graphics
-import java.io.*;			// for File
-import javax.imageio.*;		// for ImageIO
+import java.awt.Image;
+import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /**
  * Enumeration of Tile Symbols
@@ -14,43 +16,15 @@ import javax.imageio.*;		// for ImageIO
  */
 public enum TileSymbol {
 	
-	SUN( "Sun.gif" ) {
-		@Override public final void drawSymbol( Graphics g, TileOrientation orientation ) {
-			// draw the symbol of Sun
-		}
-	},
-	MOON( "Moon.gif" ) {
-		@Override public final void drawSymbol( Graphics g, TileOrientation orientation ) {
-			// draw the symbol of Moon
-		}
-	},
-	MARS( "Mars.gif" ) {
-		@Override public final void drawSymbol( Graphics g, TileOrientation orientation ) {
-			// draw the symbol of Mars
-		}
-	},
-	MERCURY( "Mercury.gif" ) {
-		@Override public final void drawSymbol( Graphics g, TileOrientation orientation ) {
-			// draw the symbol of Mercury
-		}
-	},
-	JUPITER( "Jupiter.gif" ) {
-		@Override public final void drawSymbol( Graphics g, TileOrientation orientation ) {
-			// draw the symbol of Jupiter
-		}
-	},
-	VENUS( "Venus.gif" ) {
-		@Override public final void drawSymbol( Graphics g, TileOrientation orientation ) {
-			// draw the symbol of Venus
-		}
-	},
-	SATURN( "Saturn.gif" ) {
-		@Override public final void drawSymbol( Graphics g, TileOrientation orientation ) {
-			// draw the symbol of Saturn
-		}
-	};
+	SUN( "Sun.gif", TileShape.CIRCLE ),
+	MOON( "Moon.gif", TileShape.TRIANGLE ),
+	MARS( "Mars.gif", TileShape.DIAMOND ),
+	MERCURY( "Mercury.gif", TileShape.SQUARE ),
+	JUPITER( "Jupiter.gif", TileShape.PENTAGON ),
+	VENUS( "Venus.gif", TileShape.HEXAGON ),
+	SATURN( "Saturn.gif", TileShape.OCTAGON );
 	
-	private TileSymbol( String imageFileName ) {
+	private TileSymbol( String imageFileName, TileShape tileShape ) {
 		Image image = null;
 		try {
 			image = ImageIO.read( new File( imageFileName ) );;
@@ -59,9 +33,71 @@ public enum TileSymbol {
 			e.printStackTrace();
 		}
 		symbol = image;
+		shape = tileShape;
 	}
 	
-	public abstract void drawSymbol( Graphics g, TileOrientation orientation );
+	public final TileSymbol getNextTileSymbol() {
+		return TileSymbol.values()[ ( this.ordinal() + 1 ) % TileSymbol.values().length ];
+	}
+	
+	public final void drawTile( Graphics g, TileOrientation orientation ) {
+		// draw the central symbol image
 		
+		// draw the marginal shapes
+		shape.drawShape( g, orientation, TileMargin.LEFT );
+		shape.getNextTileShape().drawShape( g, orientation, TileMargin.RIGHT );
+	}
+	
 	private final Image symbol;
+	private final TileShape shape;
+	
+	private enum TileShape {
+
+		TRIANGLE {
+			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+				// draw triangle
+			}
+		},
+		DIAMOND {
+			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+				// draw diamond
+			}
+		},
+		SQUARE {
+			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+				// draw square
+			}
+		},
+		PENTAGON {
+			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+				// draw pentagon
+			}
+		},
+		HEXAGON {
+			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+				// draw hexagon
+			}
+		},
+		OCTAGON {
+			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+				// draw octagon
+			}
+		},
+		CIRCLE {
+			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+				// draw circle
+			}
+		};
+		
+		public final TileShape getNextTileShape() {
+			return TileShape.values()[ ( this.ordinal() + 1 ) % TileShape.values().length ];
+		}
+		
+		public abstract void drawShape( Graphics g, TileOrientation orientation, TileMargin margin );
+	}
+	
+	private enum TileMargin {
+		LEFT,
+		RIGHT;
+	}
 }

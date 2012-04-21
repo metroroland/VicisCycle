@@ -1,6 +1,6 @@
 /*
  * VicisCycle 2012
- * Released under GNU GPL License
+ * Released under GNU GPL License v2
  */
 package viciscycle.tileset;
 
@@ -9,6 +9,11 @@ package viciscycle.tileset;
  * @author Kineslight
  */
 public enum TileOrientation {
+
 	UPRIGHT,
 	SIDEWAYS;
+	
+	public final TileOrientation getNextTileOrientation() {
+		return TileOrientation.values()[ ( this.ordinal() + 1 ) % TileOrientation.values().length ];
+	}
 }
