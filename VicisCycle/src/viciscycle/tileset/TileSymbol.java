@@ -54,37 +54,37 @@ public enum TileSymbol {
 	private enum TileShape {
 
 		TRIANGLE {
-			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw triangle
 			}
 		},
 		DIAMOND {
-			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw diamond
 			}
 		},
 		SQUARE {
-			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw square
 			}
 		},
 		PENTAGON {
-			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw pentagon
 			}
 		},
 		HEXAGON {
-			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw hexagon
 			}
 		},
 		OCTAGON {
-			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw octagon
 			}
 		},
 		CIRCLE {
-			public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw circle
 			}
 		};
