@@ -53,6 +53,11 @@ public enum TileSymbol {
 	
 	private enum TileShape {
 
+		CIRCLE {
+			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+				// draw circle
+			}
+		},
 		TRIANGLE {
 			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw triangle
@@ -81,11 +86,6 @@ public enum TileSymbol {
 		OCTAGON {
 			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw octagon
-			}
-		},
-		CIRCLE {
-			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
-				// draw circle
 			}
 		};
 		
