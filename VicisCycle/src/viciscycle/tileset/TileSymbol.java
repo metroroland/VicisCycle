@@ -36,11 +36,15 @@ public enum TileSymbol {
 		shape = tileShape;
 	}
 	
+	public final TileSymbol getPreviousTileSymbol() {
+		return TileSymbol.values()[ ( this.ordinal() + TileSymbol.values().length - 1 ) % TileSymbol.values().length ];
+	}
+	
 	public final TileSymbol getNextTileSymbol() {
 		return TileSymbol.values()[ ( this.ordinal() + 1 ) % TileSymbol.values().length ];
 	}
 	
-	public final void drawTile( Graphics g, TileOrientation orientation ) {
+	public final void drawSymbolAndShapes( Graphics g, TileOrientation orientation ) {
 		// draw the central symbol image
 		
 		// draw the marginal shapes

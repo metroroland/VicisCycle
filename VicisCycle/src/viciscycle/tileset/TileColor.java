@@ -25,6 +25,10 @@ public enum TileColor {
 		color = tileColor;
 	}
 	
+	public final TileColor getPreviousTileColor() {
+		return TileColor.values()[ ( this.ordinal() + TileColor.values().length - 1 ) % TileColor.values().length ];
+	}
+	
 	public final TileColor getNextTileColor() {
 		return TileColor.values()[ ( this.ordinal() + 1 ) % TileColor.values().length ];
 	}
