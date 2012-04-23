@@ -3,8 +3,9 @@
  * Released under GNU GPL License v2
  */
 /**
- * TO-DOs 1. add background to main window 2. set internal window's size and
- * layout 3. add international support
+ * TO-DOs 1. add background to main window
+ *        2. set internal window's size and
+ * layout 
  */
 package viciscycle.gui;
 
