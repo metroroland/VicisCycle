@@ -9,7 +9,6 @@
  */
 package viciscycle.gui;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.LocalAttribute;
 import java.awt.BorderLayout;
 import java.util.Locale;
 import java.util.ResourceBundle;

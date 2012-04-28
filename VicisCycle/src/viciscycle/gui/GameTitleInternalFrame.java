@@ -8,8 +8,11 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Image;
 import java.util.ResourceBundle;
-import javax.swing.*;
-import sun.font.Font2D;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 
 /**
  *
