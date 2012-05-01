@@ -5,6 +5,7 @@
 package viciscycle.model.player;
 
 import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  * Enumeration of All Players
@@ -37,6 +38,25 @@ public enum Player {
 		socket = playerSocket;
 	}
 	
+	public final int getScore( int gameRound ) {
+		if ( gameRound >= 0 && gameRound < scores.size() ) {
+			return scores.get( gameRound );
+		}
+		else {
+			// indicates invalid game round supplied
+			return -Integer.MIN_VALUE;
+		}
+	}
+	
+	public final void addScore( int playerScore ) {
+		// always append to the end of the score list
+		scores.add( playerScore );
+	}
+	
+	public final void clearScores() {
+		scores.clear();
+	}
+	
 	@Override
 	public String toString() {
 		return super.toString() + "[ " + name + ", " + socket.getInetAddress() + ":" + socket.getPort() + " ]";
@@ -45,6 +65,7 @@ public enum Player {
 	public final void reset() {
 		setName( null );
 		setSocket( null );
+		clearScores();
 	}
 	
 	public static void resetAllPlayers() {
@@ -55,4 +76,5 @@ public enum Player {
 	
 	private String name = null;
 	private Socket socket = null;
+	private final ArrayList<Integer> scores = new ArrayList<Integer>(16);
 }
