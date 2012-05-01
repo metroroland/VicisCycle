@@ -37,6 +37,11 @@ public enum Player {
 		socket = playerSocket;
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString() + "[ " + name + ", " + socket.getInetAddress() + ":" + socket.getPort() + " ]";
+	}
+	
 	public static void resetAllPlayers() {
 
 		PLAYER_1.setName( null );
