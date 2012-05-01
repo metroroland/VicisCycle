@@ -42,31 +42,15 @@ public enum Player {
 		return super.toString() + "[ " + name + ", " + socket.getInetAddress() + ":" + socket.getPort() + " ]";
 	}
 	
+	public final void reset() {
+		setName( null );
+		setSocket( null );
+	}
+	
 	public static void resetAllPlayers() {
-
-		PLAYER_1.setName( null );
-		PLAYER_1.setSocket( null );
-
-		PLAYER_2.setName( null );
-		PLAYER_2.setSocket( null );
-
-		PLAYER_3.setName( null );
-		PLAYER_3.setSocket( null );
-
-		PLAYER_4.setName( null );
-		PLAYER_4.setSocket( null );
-
-		PLAYER_5.setName( null );
-		PLAYER_5.setSocket( null );
-
-		PLAYER_6.setName( null );
-		PLAYER_6.setSocket( null );
-
-		PLAYER_7.setName( null );
-		PLAYER_7.setSocket( null );
-
-		PLAYER_8.setName( null );
-		PLAYER_8.setSocket( null );
+		for ( Player player : Player.values() ) {
+			player.reset();
+		}
 	}
 	
 	private String name = null;
