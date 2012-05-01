@@ -6,7 +6,10 @@ package viciscycle.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ResourceBundle;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -23,7 +26,7 @@ public class GameTitleInternalFrame extends javax.swing.JInternalFrame {
 	/**
 	 * Creates new form GameTitleInternalFrame
 	 */
-	public GameTitleInternalFrame() {
+	public GameTitleInternalFrame()  {
 		super("15", false, false, false, false);
 		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang"/*
 		 * ,Locale.CHINESE
@@ -39,10 +42,18 @@ public class GameTitleInternalFrame extends javax.swing.JInternalFrame {
 		JButton creditsButton = new JButton(currentRes.getString("viciscycle.credits"));
 		JButton exitButton = new JButton(currentRes.getString("viciscycle.exit"));
 		
-		startServerButton.setFont(new Font("Arial",Font.PLAIN,18));
-		joinGameButton.setFont(new Font("Arial",Font.PLAIN,18));
-		creditsButton.setFont(new Font("Arial",Font.PLAIN,18));
-		exitButton.setFont(new Font("Arial",Font.PLAIN,18));
+		try {
+			File HanWangFile = new File("font/WCL-07.ttf");
+			Font HanWangFont = Font.createFont(Font.TRUETYPE_FONT, HanWangFile).deriveFont(Font.PLAIN, 18);
+			
+			startServerButton.setFont(HanWangFont);
+			joinGameButton.setFont(HanWangFont);
+			creditsButton.setFont(HanWangFont);
+			exitButton.setFont(HanWangFont);
+		} catch (FontFormatException|IOException e) {
+		}
+		
+		
 		
 		JLabel titleLabel = new JLabel();
 		titleLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/viciscycle/graphics/logo.jpg"))); // NOI18N
