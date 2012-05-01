@@ -2,7 +2,7 @@
  * VicisCycle 2012
  * Released under GNU GPL License v2
  */
-package viciscycle.tileset;
+package viciscycle.model.tile;
 
 import java.awt.Color;
 import java.awt.Graphics;
