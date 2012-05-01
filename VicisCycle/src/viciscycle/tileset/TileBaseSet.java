@@ -13,12 +13,15 @@ import java.util.EnumMap;
 public class TileBaseSet {
 	
 	public static TilePrototype getTilePrototype( TileSymbol tileSymbol, TileColor tileColor ) {
-		return prototypes.get( tileSymbol ).get( tileColor );
+		return ( tileSymbol == null && tileColor == null ? wildcard : prototypes.get( tileSymbol ).get( tileColor ) );
 	}
 	
 	private static final EnumMap<TileSymbol, EnumMap<TileColor, TilePrototype>> prototypes;
 	
+	private static final TilePrototype wildcard = new TilePrototype( null, null );
+	
 	static {
+		// enumerate all combinations of tile symbols and tile colors
 		prototypes = new EnumMap<TileSymbol, EnumMap<TileColor, TilePrototype>>( TileSymbol.class );
 		for ( TileSymbol symbol : TileSymbol.values() ) {
 			prototypes.put( symbol, new EnumMap<TileColor, TilePrototype>( TileColor.class ) );
