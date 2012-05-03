@@ -31,7 +31,7 @@ public class VicisCycleGUI extends javax.swing.JFrame {
 	 */
 	public VicisCycleGUI() {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setSize(800, 600);
+		setSize(1024, 760);
 		setResizable(false);
 		mainDesktopPane = new JDesktopPane();
 
@@ -51,6 +51,10 @@ public class VicisCycleGUI extends javax.swing.JFrame {
 		GameTitleInternalFrame gameFrame = new GameTitleInternalFrame();
 		mainDesktopPane.add(gameFrame, BorderLayout.CENTER);
 		gameFrame.setVisible(true);
+		
+		GameInternalFrame game2Frame = new GameInternalFrame();
+		mainDesktopPane.add(game2Frame, BorderLayout.CENTER);
+		game2Frame.setVisible(true);
 	}
 
 	/**
