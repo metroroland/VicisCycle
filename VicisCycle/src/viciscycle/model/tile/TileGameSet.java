@@ -2,7 +2,7 @@
  * VicisCycle 2012
  * Released under GNU GPL License v2
  */
-package viciscycle.tileset;
+package viciscycle.model.tile;
 
 import java.util.Random;
 
@@ -18,7 +18,7 @@ public class TileGameSet {
 		final int numberOfBaseSets = ( numberOfPlayers <= 4 ? 2 : ( numberOfPlayers <= 6 ? 3 : 4 ) );
 		
 		// create the tiles
-		tiles = new Tile[ TileSymbol.values().length * TileColor.values().length * numberOfBaseSets ];
+		tiles = new Tile[ ( TileSymbol.values().length * TileColor.values().length + 1 ) * numberOfBaseSets ];
 		int currentTilePos = 0;
 		for ( TileSymbol symbol : TileSymbol.values() ) {
 			for ( TileColor color : TileColor.values() ) {
@@ -27,6 +27,11 @@ public class TileGameSet {
 					tiles[ currentTilePos++ ] = new Tile( prototype, TileOrientation.UPRIGHT );
 				}
 			}
+		}
+		
+		// create wildcard tiles
+		for ( int i = 0; i < numberOfBaseSets; ++i ) {
+			tiles[ currentTilePos++ ] = new Tile( TileBaseSet.getTilePrototype( null, null ), TileOrientation.UPRIGHT );
 		}
 		
 		// shuffle the tiles
