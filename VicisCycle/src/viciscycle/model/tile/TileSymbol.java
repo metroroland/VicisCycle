@@ -30,7 +30,7 @@ public enum TileSymbol {
 			image = ImageIO.read( new File( imageFileName ) );;
 		}
 		catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		symbol = image;
 		shape = tileShape;
@@ -60,6 +60,7 @@ public enum TileSymbol {
 		CIRCLE {
 			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
 				// draw circle
+				
 			}
 		},
 		TRIANGLE {

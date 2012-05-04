@@ -58,7 +58,7 @@
 			CodeGeneration
 		</plugin>
 </profile>
-<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 04 21:49:35 CST 2012'>
+<XMI xmi.version = '1.2' xmlns:UML = 'org.omg.xmi.namespace.UML' timestamp = 'Fri May 04 21:46:07 CST 2012'>
   <XMI.header>    <XMI.documentation>
       <XMI.exporter>ArgoUML (using Netbeans XMI Writer version 1.0)</XMI.exporter>
       <XMI.exporterVersion>0.34(6) revised on $Date: 2010-01-11 22:20:14 +0100 (Mon, 11 Jan 2010) $ </XMI.exporterVersion>
@@ -1006,7 +1006,7 @@
     </group>
   </group>
   <group name="Fig1"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1368, 904, 148, 126]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1368, 888, 148, 126]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
        href="-64--88-1-5-6e7ddbd2:136c3f4e626:-8000:000000000000086E"
        fill="1"
        fillcolor="white"
@@ -1018,7 +1018,7 @@
     
     <rectangle name="Fig1.0"
       x="1368"
-      y="904"
+      y="888"
       width="148"
       height="126"
       fill="1"
@@ -1028,7 +1028,7 @@
     />
     <text name="Fig1.1"
       x="1369"
-      y="905"
+      y="889"
       width="146"
       height="23"
       fill="0"
@@ -1043,7 +1043,7 @@
       justification="Center"
     >TileColor</text>
     <group name="Fig1.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1369, 905, 135, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1369, 889, 135, 0]"
          href="-64--88-1-5-6e7ddbd2:136c3f4e626:-8000:000000000000086E"
          fill="0"
          fillcolor="white"
@@ -1056,7 +1056,7 @@
       
       <rectangle name="Fig1.2.0"
         x="1369"
-        y="905"
+        y="889"
         width="135"
         height="0"
         fill="0"
@@ -1067,7 +1067,7 @@
     </group>
     <rectangle name="Fig1.3"
       x="1368"
-      y="928"
+      y="912"
       width="148"
       height="1"
       fill="1"
@@ -1076,7 +1076,7 @@
       strokecolor="black"
     />
     <group name="Fig1.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1369, 929, 146, 42]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1369, 913, 146, 42]"
          href="-64--88-1-5-6e7ddbd2:136c3f4e626:-8000:000000000000086E"
          fill="0"
          fillcolor="white"
@@ -1088,7 +1088,7 @@
       
       <rectangle name="Fig1.4.0"
         x="1369"
-        y="929"
+        y="913"
         width="146"
         height="42"
         fill="0"
@@ -1098,7 +1098,7 @@
       />
       <text name="Fig1.4.1"
         x="1369"
-        y="929"
+        y="913"
         width="146"
         height="17"
         fill="0"
@@ -1114,7 +1114,7 @@
       >color : Color</text>
       <text name="Fig1.4.2"
         x="1369"
-        y="946"
+        y="930"
         width="146"
         height="23"
         fill="0"
@@ -1131,7 +1131,7 @@
     </group>
     <rectangle name="Fig1.5"
       x="1368"
-      y="970"
+      y="954"
       width="148"
       height="1"
       fill="1"
@@ -1140,7 +1140,7 @@
       strokecolor="black"
     />
     <group name="Fig1.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1369, 971, 146, 59]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1369, 955, 146, 59]"
          href="-64--88-1-5-6e7ddbd2:136c3f4e626:-8000:000000000000086E"
          fill="0"
          fillcolor="white"
@@ -1152,7 +1152,7 @@
       
       <rectangle name="Fig1.6.0"
         x="1369"
-        y="971"
+        y="955"
         width="146"
         height="59"
         fill="0"
@@ -1162,7 +1162,7 @@
       />
       <text name="Fig1.6.1"
         x="1369"
-        y="971"
+        y="955"
         width="146"
         height="17"
         fill="0"
@@ -1178,7 +1178,7 @@
       >getPreviousTileColor()</text>
       <text name="Fig1.6.2"
         x="1369"
-        y="988"
+        y="972"
         width="146"
         height="17"
         fill="0"
@@ -1194,7 +1194,7 @@
       >getNextTileColor()</text>
       <text name="Fig1.6.3"
         x="1369"
-        y="1005"
+        y="989"
         width="146"
         height="23"
         fill="0"
@@ -1211,7 +1211,7 @@
     </group>
   </group>
   <group name="Fig2"
-       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1528, 904, 216, 143]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
+       description="org.argouml.uml.diagram.static_structure.ui.FigClass[1592, 888, 216, 143]pathVisible=false;stereotypeView=0;operationsVisible=true;attributesVisible=true;"
        href="-64--88-1-5-6e7ddbd2:136c3f4e626:-8000:000000000000087D"
        fill="1"
        fillcolor="white"
@@ -1222,8 +1222,8 @@
     </private>
     
     <rectangle name="Fig2.0"
-      x="1528"
-      y="904"
+      x="1592"
+      y="888"
       width="216"
       height="143"
       fill="1"
@@ -1232,8 +1232,8 @@
       strokecolor="black"
     />
     <text name="Fig2.1"
-      x="1529"
-      y="905"
+      x="1593"
+      y="889"
       width="214"
       height="23"
       fill="0"
@@ -1248,7 +1248,7 @@
       justification="Center"
     >TIleSymbol</text>
     <group name="Fig2.2"
-         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1529, 905, 181, 0]"
+         description="org.argouml.uml.diagram.ui.FigStereotypesGroup[1593, 889, 181, 0]"
          href="-64--88-1-5-6e7ddbd2:136c3f4e626:-8000:000000000000087D"
          fill="0"
          fillcolor="white"
@@ -1260,8 +1260,8 @@
       </private>
       
       <rectangle name="Fig2.2.0"
-        x="1529"
-        y="905"
+        x="1593"
+        y="889"
         width="181"
         height="0"
         fill="0"
@@ -1271,8 +1271,8 @@
       />
     </group>
     <rectangle name="Fig2.3"
-      x="1528"
-      y="928"
+      x="1592"
+      y="912"
       width="216"
       height="1"
       fill="1"
@@ -1281,7 +1281,7 @@
       strokecolor="black"
     />
     <group name="Fig2.4"
-         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1529, 929, 214, 42]"
+         description="org.argouml.uml.diagram.ui.FigAttributesCompartment[1593, 913, 214, 42]"
          href="-64--88-1-5-6e7ddbd2:136c3f4e626:-8000:000000000000087D"
          fill="0"
          fillcolor="white"
@@ -1292,8 +1292,8 @@
       </private>
       
       <rectangle name="Fig2.4.0"
-        x="1529"
-        y="929"
+        x="1593"
+        y="913"
         width="214"
         height="42"
         fill="0"
@@ -1302,8 +1302,8 @@
         strokecolor="black"
       />
       <text name="Fig2.4.1"
-        x="1529"
-        y="929"
+        x="1593"
+        y="913"
         width="214"
         height="17"
         fill="0"
@@ -1318,8 +1318,8 @@
         justification="Left"
       >symbol : Image</text>
       <text name="Fig2.4.2"
-        x="1529"
-        y="946"
+        x="1593"
+        y="930"
         width="214"
         height="23"
         fill="0"
@@ -1335,8 +1335,8 @@
       >shape : TileShape</text>
     </group>
     <rectangle name="Fig2.5"
-      x="1528"
-      y="970"
+      x="1592"
+      y="954"
       width="216"
       height="1"
       fill="1"
@@ -1345,7 +1345,7 @@
       strokecolor="black"
     />
     <group name="Fig2.6"
-         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1529, 971, 214, 76]"
+         description="org.argouml.uml.diagram.ui.FigOperationsCompartment[1593, 955, 214, 76]"
          href="-64--88-1-5-6e7ddbd2:136c3f4e626:-8000:000000000000087D"
          fill="0"
          fillcolor="white"
@@ -1356,8 +1356,8 @@
       </private>
       
       <rectangle name="Fig2.6.0"
-        x="1529"
-        y="971"
+        x="1593"
+        y="955"
         width="214"
         height="76"
         fill="0"
@@ -1366,8 +1366,8 @@
         strokecolor="black"
       />
       <text name="Fig2.6.1"
-        x="1529"
-        y="971"
+        x="1593"
+        y="955"
         width="214"
         height="17"
         fill="0"
@@ -1382,8 +1382,8 @@
         justification="Left"
       >drawShape(g,orientation,margin)</text>
       <text name="Fig2.6.2"
-        x="1529"
-        y="988"
+        x="1593"
+        y="972"
         width="214"
         height="17"
         fill="0"
@@ -1398,8 +1398,8 @@
         justification="Left"
       >getPreviousTileSymbol()</text>
       <text name="Fig2.6.3"
-        x="1529"
-        y="1005"
+        x="1593"
+        y="989"
         width="214"
         height="17"
         fill="0"
@@ -1414,8 +1414,8 @@
         justification="Left"
       >getNextTileSymbol()</text>
       <text name="Fig2.6.4"
-        x="1529"
-        y="1022"
+        x="1593"
+        y="1006"
         width="214"
         height="23"
         fill="0"
@@ -1642,7 +1642,7 @@
       <moveto x="1496"
               y="859" />
       <lineto x="1496"
-              y="904" />
+              y="888" />
     </path>
   </group>
   <group name="Fig5"
@@ -1696,10 +1696,10 @@
       stroke="1"
       strokecolor="black"
     >
-      <moveto x="1543"
+      <moveto x="1559"
               y="859" />
-      <lineto x="1543"
-              y="904" />
+      <lineto x="1592"
+              y="888" />
     </path>
   </group>
   <group name="Fig6"
