@@ -31,7 +31,7 @@ public class VicisCycleGUI extends javax.swing.JFrame {
 	 */
 	public VicisCycleGUI() {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-		setSize(1024, 760);
+		setSize(1100, 940);
 		setResizable(false);
 		mainDesktopPane = new JDesktopPane();
 

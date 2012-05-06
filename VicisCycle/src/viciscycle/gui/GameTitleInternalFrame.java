@@ -33,7 +33,7 @@ public class GameTitleInternalFrame extends javax.swing.JInternalFrame {
 		 */);
 		setTitle(currentRes.getString("viciscycle.titlePage"));
 		setBounds(0, 0, 320, 300);
-		setLocation((800 - 320) / 2, (600 - 300) / 2);
+		setLocation((760 - 320) / 2, (560 - 300) / 2);
 		JPanel gp = new JPanel();
 		gp.setSize(320, 300);
 		

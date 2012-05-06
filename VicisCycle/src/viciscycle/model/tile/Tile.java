@@ -5,6 +5,7 @@
 package viciscycle.model.tile;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -20,7 +21,8 @@ public class Tile extends ImageIcon {
 		orientation = tileOrientation;
 		 Image image = Toolkit.getDefaultToolkit().getImage("src/viciscycle/graphics/"+TileSymbol.values()[  prototype.getTileSymbol().ordinal()]+".png");
 		this.setImage(image);
-		 shape2 = new Rectangle2D.Double(0, 0, 98, 98);
+		 shape2 = new Rectangle2D.Double(0, 0, 78, 98);
+		 shape1 = new Rectangle2D.Double(78, 0, 20, 98);
 	}
 	
 	@Override
@@ -32,12 +34,22 @@ public class Tile extends ImageIcon {
 		BufferedImage image = new BufferedImage(98, 98, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D gImage = image.createGraphics();
 		
-		
-		gImage.setPaint(new GradientPaint(49, 49, Color.RED, 0, 0, Color.WHITE));
+		//draw background
+		Point2D center =new Point2D.Float(48, 48);
+		float radius = 76;
+		float dist[] = {0.4f,1.0f};
+		Color colors[] = {Color.RED,Color.WHITE};
+		gImage.setPaint(new RadialGradientPaint(center, radius, dist, colors));
 		gImage.fill(shape2);
+		Color colors2[] = {Color.ORANGE,Color.WHITE};
+		gImage.setPaint(new RadialGradientPaint(center, radius, dist, colors2));
+		gImage.fill(shape1);
 		gImage.drawImage(this.getImage(),0,0,null);
 		AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.DST_ATOP, 1f);
 		gImage.setComposite(composite);
+		
+		//draw shape
+		
 		
 		if (this.orientation == TileOrientation.SIDEWAYS){
 		g2d.rotate(Math.PI/2);
@@ -58,5 +70,5 @@ public class Tile extends ImageIcon {
 	private final TilePrototype prototype;
 	private final TileOrientation orientation;
 	private Shape shape2;
-	
+	private Shape shape1;
 }

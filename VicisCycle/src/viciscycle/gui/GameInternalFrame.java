@@ -26,10 +26,10 @@ public class GameInternalFrame extends JInternalFrame{
 		 */);
 		
 		setTitle(currentRes.getString("viciscycle.gamePage"));
-		setBounds(0, 0, 1010, 570);
+		setBounds(0, 0, 1060, 600);
 		setLocation((800 - 330) / 2, (600 - 310) / 2);
 		JPanel gp = new JPanel();
-		gp.setSize(1010, 570);
+		gp.setSize(1060, 600);
 
 		JList<ImageIcon> stage = new JList<>();
 		
@@ -43,6 +43,7 @@ public class GameInternalFrame extends JInternalFrame{
 		Tile data2 = new Tile(new TilePrototype(TileSymbol.MERCURY,TileColor.RED) ,TileOrientation.UPRIGHT);
 		ImageIcon[] dataIcons = {data,data2};
 		for(int i= 0; i<10;i++){
+			model.addElement(dataIcons[1]);
 			model.addElement(dataIcons[0]);
 			model.addElement(dataIcons[1]);
 		}
@@ -54,12 +55,20 @@ public class GameInternalFrame extends JInternalFrame{
 		stage.setVisibleRowCount(0);
 		stage.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		stage.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		stage.setDragEnabled(true);
 		JList<Tile> rack = new JList<Tile>();
+		rack.setModel(model);
+		rack.setVisibleRowCount(0);
+		rack.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		rack.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+		rack.setDragEnabled(true);
 		
-		
-		stage.setSize(800, 340);
-		rack.setSize(1000,180);
-		
+		stage.setSize(816, 340);
+		rack.setSize(1016,180);
+		JScrollPane rackScrollPane = new JScrollPane(rack);
+		JScrollPane stageScrollPane= new JScrollPane(stage);
+				
+				
 		JLabel tileLeftJLabel = new JLabel(currentRes.getString("viciscycle.tileLeft"));
 		
 		JButton undoButton = new JButton(currentRes.getString("viciscycle.undo"));
@@ -82,18 +91,19 @@ public class GameInternalFrame extends JInternalFrame{
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
 				layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-					.addComponent(stage,GroupLayout.Alignment.LEADING, 800, 800, 800)
+					.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 800, 800, 800)
 					.addGroup(layout.createSequentialGroup()
 						.addComponent(tileLeftJLabel)
 						.addComponent(undoButton)
 						.addComponent(drawTileButton)
 						.addComponent(acceptButton)
 						.addComponent(exitButton)
-					).addComponent(rack,1000,1000,1000)
+						.addGap(10,10,10)
+					).addComponent(rackScrollPane,1060,1060,1060)
 				);
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
-					.addComponent(stage,340,340,340)
+					.addComponent(stageScrollPane,340,340,340)
 					.addGap(10,10,10)
 					.addGroup(layout.createParallelGroup()
 						.addComponent(tileLeftJLabel,GroupLayout.Alignment.LEADING)
@@ -102,7 +112,8 @@ public class GameInternalFrame extends JInternalFrame{
 						.addComponent(acceptButton)
 						.addComponent(exitButton))
 					.addGap(10,10,10)
-					.addComponent(rack,180,180,180)
+					.addComponent(rackScrollPane,200,200,200)
+					.addGap(10,10,10)
 				);
 	}
 }
