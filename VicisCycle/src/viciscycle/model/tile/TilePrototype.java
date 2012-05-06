@@ -4,24 +4,28 @@
  */
 package viciscycle.model.tile;
 
+import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 /**
  * Prototype for Each Unique Tile
  * @author Kineslight
  */
-public class TilePrototype  {
+public class TilePrototype {
 	
 	public TilePrototype( TileSymbol tileSymbol, TileColor tileColor ) {
 		symbol = tileSymbol;
 		color = tileColor;
-	i = new ImageIcon("src/viciscycle/graphics/"+TileSymbol.values()[  symbol.ordinal()]+".png");
+		//this.
+	
 		
 	}
 	
 	public ImageIcon getImageIcon(){
-		return i;
+		return new ImageIcon();
 	}
 	public TileSymbol getTileSymbol(){
 		return symbol;
@@ -29,6 +33,7 @@ public class TilePrototype  {
 	public TileColor getTileColor(){
 		return color;
 	}
+	
 	public final void drawTile( Graphics g, TileOrientation orientation ) {
 		symbol.drawSymbolAndShapes( g, orientation );
 		color.paintColors( g, orientation );
@@ -38,5 +43,5 @@ public class TilePrototype  {
 	
 	private TileSymbol symbol;
 	private TileColor color;
-	private ImageIcon i;
+	
 }

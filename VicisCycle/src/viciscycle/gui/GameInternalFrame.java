@@ -4,6 +4,7 @@
  */
 package viciscycle.gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.geom.Area;
@@ -31,6 +32,7 @@ public class GameInternalFrame extends JInternalFrame{
 		gp.setSize(1010, 570);
 
 		JList<ImageIcon> stage = new JList<>();
+		
 		DefaultListModel model = new DefaultListModel();
 		
 		
@@ -38,8 +40,12 @@ public class GameInternalFrame extends JInternalFrame{
 		
 		/**control code**/
 		Tile data = new Tile(new TilePrototype(TileSymbol.SUN,TileColor.RED) ,TileOrientation.UPRIGHT);
-		ImageIcon[] dataIcons = {data.getTilePrototype().getImageIcon()};
-		for(int i= 0; i<10;i++)model.addElement(dataIcons[0]);
+		Tile data2 = new Tile(new TilePrototype(TileSymbol.MERCURY,TileColor.RED) ,TileOrientation.UPRIGHT);
+		ImageIcon[] dataIcons = {data,data2};
+		for(int i= 0; i<10;i++){
+			model.addElement(dataIcons[0]);
+			model.addElement(dataIcons[1]);
+		}
 		
 		
 		
