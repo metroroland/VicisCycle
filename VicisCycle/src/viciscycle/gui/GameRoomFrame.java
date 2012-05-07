@@ -39,8 +39,8 @@ public class GameRoomFrame extends JInternalFrame{
 		
 		
 		/**control code**/
-		Tile data = new Tile(new TilePrototype(TileSymbol.SUN,TileColor.RED) ,TileOrientation.UPRIGHT);
-		Tile data2 = new Tile(new TilePrototype(TileSymbol.MERCURY,TileColor.RED) ,TileOrientation.UPRIGHT);
+		Tile data = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SUN, TileColor.RED ), TileOrientation.UPRIGHT );
+		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT );
 		ImageIcon[] dataIcons = {data,data2};
 		for(int i= 0; i<10;i++){
 			model.addElement(dataIcons[1]);
@@ -69,21 +69,21 @@ public class GameRoomFrame extends JInternalFrame{
 		JScrollPane stageScrollPane= new JScrollPane(stage);
 		//rackScrollPane.setSize(1016, 180);
 				
-		JLabel tileLeftJLabel = new JLabel(currentRes.getString("viciscycle.gui.tilesLeft"));
+		JLabel tileLeftJLabel = new JLabel(currentRes.getString("viciscycle.gui.tilesRemaining") + ":");
 		
-		JButton drawTileButton = new JButton(currentRes.getString("viciscycle.gui.drawTile"));
-		JButton acceptButton = new JButton(currentRes.getString("viciscycle.gui.confirmMoves"));
-		JButton undoButton = new JButton(currentRes.getString("viciscycle.gui.revertMoves"));
-		JButton exitButton = new JButton(currentRes.getString("viciscycle.gui.abandonGame"));
+		drawTileButton = new JButton(currentRes.getString("viciscycle.gui.drawTile"));
+		confirmMovesButton = new JButton(currentRes.getString("viciscycle.gui.confirmMoves"));
+		revertMovesButton = new JButton(currentRes.getString("viciscycle.gui.revertMoves"));
+		abandonGameButton = new JButton(currentRes.getString("viciscycle.gui.abandonGame"));
 		
 		try {
 			File HanWangFile = new File("font/WCL-07.ttf");
 			Font HanWangFont = Font.createFont(Font.TRUETYPE_FONT, HanWangFile).deriveFont(Font.PLAIN, 18);
 			
-			undoButton.setFont(HanWangFont);
+			revertMovesButton.setFont(HanWangFont);
 			drawTileButton.setFont(HanWangFont);
-			acceptButton.setFont(HanWangFont);
-			exitButton.setFont(HanWangFont);
+			confirmMovesButton.setFont(HanWangFont);
+			abandonGameButton.setFont(HanWangFont);
 		} catch (FontFormatException|IOException e) {
 		}
 		
@@ -94,10 +94,10 @@ public class GameRoomFrame extends JInternalFrame{
 					.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 800, 800, 800)
 					.addGroup(layout.createSequentialGroup()
 						.addComponent(tileLeftJLabel)
-						.addComponent(undoButton)
 						.addComponent(drawTileButton)
-						.addComponent(acceptButton)
-						.addComponent(exitButton)
+						.addComponent(confirmMovesButton)
+						.addComponent(revertMovesButton)
+						.addComponent(abandonGameButton)
 						.addGap(10,10,10)
 					).addComponent(rackScrollPane)
 				);
@@ -107,13 +107,18 @@ public class GameRoomFrame extends JInternalFrame{
 					.addGap(10,10,10)
 					.addGroup(layout.createParallelGroup()
 						.addComponent(tileLeftJLabel,GroupLayout.Alignment.LEADING)
-						.addComponent(undoButton)
 						.addComponent(drawTileButton)
-						.addComponent(acceptButton)
-						.addComponent(exitButton))
+						.addComponent(confirmMovesButton)
+						.addComponent(revertMovesButton)
+						.addComponent(abandonGameButton))
 					.addGap(10,10,10)
 					.addComponent(rackScrollPane)
 					.addGap(10,10,10)
 				);
 	}
+	
+	private JButton drawTileButton;
+	private JButton confirmMovesButton;
+	private JButton revertMovesButton;
+	private JButton abandonGameButton;
 }
