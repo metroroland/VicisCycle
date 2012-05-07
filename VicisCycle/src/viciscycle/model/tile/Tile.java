@@ -24,7 +24,7 @@ public class Tile extends ImageIcon {
 		this.setImage(image);
 		 shape2 = new Rectangle2D.Double(0, 0, 98, 78);
 		 shape1 = new Rectangle2D.Double(0, 78, 98, 20);
-		 border = new Rectangle2D.Double(0, 0, 95, 93);
+		 border = new Rectangle2D.Double(0, 0, 96, 94);
 	}
 	
 	@Override
@@ -39,10 +39,10 @@ public class Tile extends ImageIcon {
 		gImage.translate(-98,0 );
 		//draw background
 		/*Point2D center =new Point2D.Float(48, 48);
-		float radius = 76;
-		float dist[] = {0.4f,1.0f};
-		Color colors[] = {Color.RED,Color.WHITE};*/
-		
+		 * float radius = 76;
+		 * float dist[] = {0.4f,1.0f};
+		 * Color colors[] = {Color.RED,Color.WHITE};*/
+		gImage.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		gImage.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, Color.RED));
 		gImage.fill(shape2);
 		//Color colors2[] = {Color.ORANGE,Color.WHITE};
@@ -52,7 +52,7 @@ public class Tile extends ImageIcon {
 		gImage.setPaint( Color.BLACK);
 		gImage.draw(border);
 		gImage.drawImage(this.getImage(),0,0,null);
-	
+		
 		
 		//draw shape
 		AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.3f);
@@ -63,16 +63,17 @@ public class Tile extends ImageIcon {
 		Rectangle2D r = new Rectangle2D.Double(88, 39, 20, 20);
 		gImage.draw(r);
 		
-		 composite = AlphaComposite.getInstance(AlphaComposite.DST_ATOP, 1f);
+		composite = AlphaComposite.getInstance(AlphaComposite.DST_ATOP, 1f);
 		gImage.setComposite(composite);
 		if (this.orientation == TileOrientation.SIDEWAYS){
-		g2d.rotate(Math.PI/2);
-		g2d.drawImage(this.getImage(), 0, -98, c);
+			g2d.rotate(Math.PI/2);
+			g2d.drawImage(this.getImage(), 0, -98, c);
 		}else{
 			
 		//	AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 			//this.getImage().setComposite(composite);
 			prototype.drawTile(g, orientation);
+			
 			g2d.drawImage(image, 0, 0, c);
 			
 			
