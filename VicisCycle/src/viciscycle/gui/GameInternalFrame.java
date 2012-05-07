@@ -26,7 +26,7 @@ public class GameInternalFrame extends JInternalFrame{
 		 */);
 		
 		setTitle(currentRes.getString("viciscycle.gamePage"));
-		setBounds(0, 0, 1060, 600);
+		setBounds(0, 0, 1060, 700);
 		setLocation((800 - 330) / 2, (600 - 310) / 2);
 		JPanel gp = new JPanel();
 		gp.setSize(1060, 600);
@@ -63,11 +63,11 @@ public class GameInternalFrame extends JInternalFrame{
 		rack.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		rack.setDragEnabled(true);
 		
-		stage.setSize(816, 340);
-		rack.setSize(1016,180);
+		//stage.setSize(816, 340);
+		//rack.setSize(1016,180);
 		JScrollPane rackScrollPane = new JScrollPane(rack);
 		JScrollPane stageScrollPane= new JScrollPane(stage);
-				
+		//rackScrollPane.setSize(1016, 180);
 				
 		JLabel tileLeftJLabel = new JLabel(currentRes.getString("viciscycle.tileLeft"));
 		
@@ -99,7 +99,7 @@ public class GameInternalFrame extends JInternalFrame{
 						.addComponent(acceptButton)
 						.addComponent(exitButton)
 						.addGap(10,10,10)
-					).addComponent(rackScrollPane,1060,1060,1060)
+					).addComponent(rackScrollPane)
 				);
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
@@ -112,7 +112,7 @@ public class GameInternalFrame extends JInternalFrame{
 						.addComponent(acceptButton)
 						.addComponent(exitButton))
 					.addGap(10,10,10)
-					.addComponent(rackScrollPane,200,200,200)
+					.addComponent(rackScrollPane)
 					.addGap(10,10,10)
 				);
 	}
