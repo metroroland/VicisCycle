@@ -6,7 +6,6 @@ package viciscycle.model.tile;
 
 import java.awt.Color;
 import java.awt.GradientPaint;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 
 /**
@@ -35,11 +34,10 @@ public enum TileColor {
 		return TileColor.values()[ ( this.ordinal() + 1 ) % TileColor.values().length ];
 	}
 	
-	public final void paintColors( Graphics g, TileOrientation orientation ) {
+	public final void paintColors( Graphics2D g, TileOrientation orientation ) {
 		// paint the center and margin colors
-		Graphics2D g2d = (Graphics2D)g;
-		//g2d.setPaint(new GradientPaint(49, 49, color, 0, 0, Color.WHITE));
-		//g2d.drawImage(, null, 0, 0);
+		// g.setPaint(new GradientPaint(49, 49, color, 0, 0, Color.WHITE));
+		// g.drawImage(, null, 0, 0);
 	}
 	
 	private final Color color;

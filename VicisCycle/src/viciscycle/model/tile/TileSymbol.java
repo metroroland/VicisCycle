@@ -5,7 +5,7 @@
 package viciscycle.model.tile;
 
 import java.awt.Image;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -44,7 +44,7 @@ public enum TileSymbol {
 		return TileSymbol.values()[ ( this.ordinal() + 1 ) % TileSymbol.values().length ];
 	}
 	
-	public final void drawSymbolAndShapes( Graphics g, TileOrientation orientation ) {
+	public final void drawSymbolAndShapes( Graphics2D g, TileOrientation orientation ) {
 		// draw the central symbol image
 		
 		// draw the marginal shapes
@@ -58,43 +58,43 @@ public enum TileSymbol {
 	private enum TileShape {
 
 		CIRCLE {
-			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
 				// draw circle
 				
 			}
 		},
 		TRIANGLE {
-			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
 				// draw triangle
 			}
 		},
 		DIAMOND {
-			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
 				// draw diamond
 			}
 		},
 		SQUARE {
-			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
 				// draw square
 			}
 		},
 		PENTAGON {
-			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
 				// draw pentagon
 			}
 		},
 		HEXAGON {
-			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
 				// draw hexagon
 			}
 		},
 		OCTAGON {
-			@Override public void drawShape( Graphics g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
 				// draw octagon
 			}
 		};
 		
-		public abstract void drawShape( Graphics g, TileOrientation orientation, TileMargin margin );
+		public abstract void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin );
 	}
 	
 	private enum TileMargin {

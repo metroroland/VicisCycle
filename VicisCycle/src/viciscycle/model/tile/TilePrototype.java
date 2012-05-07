@@ -5,7 +5,7 @@
 package viciscycle.model.tile;
 
 import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -34,7 +34,7 @@ public class TilePrototype {
 		return color;
 	}
 	
-	public final void drawTile( Graphics g, TileOrientation orientation ) {
+	public final void drawTile( Graphics2D g, TileOrientation orientation ) {
 		symbol.drawSymbolAndShapes( g, orientation );
 		color.paintColors( g, orientation );
 		// draw tile border

@@ -72,7 +72,7 @@ public class Tile extends ImageIcon {
 			
 		//	AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f);
 			//this.getImage().setComposite(composite);
-			prototype.drawTile(g, orientation);
+			prototype.drawTile(g2d, orientation);
 			
 			g2d.drawImage(image, 0, 0, c);
 			
