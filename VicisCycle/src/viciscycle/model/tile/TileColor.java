@@ -4,6 +4,7 @@
  */
 package viciscycle.model.tile;
 
+import java.util.EnumMap;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
@@ -27,11 +28,11 @@ public enum TileColor {
 	}
 	
 	public final TileColor getPreviousTileColor() {
-		return TileColor.values()[ ( this.ordinal() + TileColor.values().length - 1 ) % TileColor.values().length ];
+		return previousTileColors.get( this );
 	}
 	
 	public final TileColor getNextTileColor() {
-		return TileColor.values()[ ( this.ordinal() + 1 ) % TileColor.values().length ];
+		return nextTileColors.get( this );
 	}
 	
 	public final void paintColors( Graphics2D g, TileOrientation orientation ) {
@@ -41,4 +42,22 @@ public enum TileColor {
 	}
 	
 	private final Color color;
+	
+	private static final EnumMap<TileColor, TileColor> previousTileColors;
+	private static final EnumMap<TileColor, TileColor> nextTileColors;
+	
+	static {
+		// precalculate tile color order mapping
+		previousTileColors = new EnumMap<TileColor, TileColor>( TileColor.class );
+		for ( TileColor tileColor : TileColor.values() ) {
+			final TileColor previousTileColor = TileColor.values()[ ( tileColor.ordinal() + TileColor.values().length - 1 ) % TileColor.values().length ];
+			previousTileColors.put( tileColor, previousTileColor );
+		}
+
+		nextTileColors = new EnumMap<TileColor, TileColor>( TileColor.class );
+		for ( TileColor tileColor : TileColor.values() ) {
+			final TileColor nextTileColor = TileColor.values()[ ( tileColor.ordinal() + 1 ) % TileColor.values().length ];
+			nextTileColors.put( tileColor, nextTileColor );
+		}
+	}
 }

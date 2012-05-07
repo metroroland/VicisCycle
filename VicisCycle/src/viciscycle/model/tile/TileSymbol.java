@@ -4,6 +4,7 @@
  */
 package viciscycle.model.tile;
 
+import java.util.EnumMap;
 import java.awt.Image;
 import java.awt.Graphics2D;
 import java.io.File;
@@ -37,11 +38,11 @@ public enum TileSymbol {
 	}
 	
 	public final TileSymbol getPreviousTileSymbol() {
-		return TileSymbol.values()[ ( this.ordinal() + TileSymbol.values().length - 1 ) % TileSymbol.values().length ];
+		return previousTileSymbols.get( this );
 	}
 	
 	public final TileSymbol getNextTileSymbol() {
-		return TileSymbol.values()[ ( this.ordinal() + 1 ) % TileSymbol.values().length ];
+		return nextTileSymbols.get( this );
 	}
 	
 	public final void drawSymbolAndShapes( Graphics2D g, TileOrientation orientation ) {
@@ -100,5 +101,23 @@ public enum TileSymbol {
 	private enum TileMargin {
 		LEFT,
 		RIGHT;
+	}
+	
+	private static final EnumMap<TileSymbol, TileSymbol> previousTileSymbols;
+	private static final EnumMap<TileSymbol, TileSymbol> nextTileSymbols;
+	
+	static {
+		// precalculate tile symbol order mapping
+		previousTileSymbols = new EnumMap<TileSymbol, TileSymbol>( TileSymbol.class );
+		for ( TileSymbol tileSymbol : TileSymbol.values() ) {
+			final TileSymbol previousTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + TileSymbol.values().length - 1 ) % TileSymbol.values().length ];
+			previousTileSymbols.put( tileSymbol, previousTileSymbol );
+		}
+		
+		nextTileSymbols = new EnumMap<TileSymbol, TileSymbol>( TileSymbol.class );
+		for ( TileSymbol tileSymbol : TileSymbol.values() ) {
+			final TileSymbol nextTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + 1 ) % TileSymbol.values().length ];
+			nextTileSymbols.put( tileSymbol, nextTileSymbol );
+		}
 	}
 }
