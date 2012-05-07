@@ -48,11 +48,11 @@ public class VicisCycleGUI extends javax.swing.JFrame {
 				IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
 			java.util.logging.Logger.getLogger(VicisCycleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
-		GameTitleInternalFrame gameFrame = new GameTitleInternalFrame();
+		MainMenuFrame gameFrame = new MainMenuFrame();
 		mainDesktopPane.add(gameFrame, BorderLayout.CENTER);
 		gameFrame.setVisible(true);
 		
-		GameInternalFrame game2Frame = new GameInternalFrame();
+		GameRoomFrame game2Frame = new GameRoomFrame();
 		mainDesktopPane.add(game2Frame, BorderLayout.CENTER);
 		game2Frame.setVisible(true);
 	}

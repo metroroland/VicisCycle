@@ -18,14 +18,14 @@ import viciscycle.model.tile.*;
  *
  * @author roland
  */
-public class GameInternalFrame extends JInternalFrame{
-	public GameInternalFrame(){
+public class GameRoomFrame extends JInternalFrame{
+	public GameRoomFrame(){
 		super("15", false, false, false, false);
 		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang"/*
 		 * ,Locale.CHINESE
 		 */);
 		
-		setTitle(currentRes.getString("viciscycle.gamePage"));
+		setTitle(currentRes.getString("viciscycle.gui.gameTitle") + " - " + currentRes.getString("viciscycle.gui.gameRoom"));
 		setBounds(0, 0, 1060, 700);
 		setLocation((800 - 330) / 2, (600 - 310) / 2);
 		JPanel gp = new JPanel();
@@ -69,12 +69,12 @@ public class GameInternalFrame extends JInternalFrame{
 		JScrollPane stageScrollPane= new JScrollPane(stage);
 		//rackScrollPane.setSize(1016, 180);
 				
-		JLabel tileLeftJLabel = new JLabel(currentRes.getString("viciscycle.tileLeft"));
+		JLabel tileLeftJLabel = new JLabel(currentRes.getString("viciscycle.gui.tilesLeft"));
 		
-		JButton undoButton = new JButton(currentRes.getString("viciscycle.undo"));
-		JButton drawTileButton = new JButton(currentRes.getString("viciscycle.drawTile"));
-		JButton acceptButton = new JButton(currentRes.getString("viciscycle.accept"));
-		JButton exitButton = new JButton(currentRes.getString("viciscycle.exit"));
+		JButton drawTileButton = new JButton(currentRes.getString("viciscycle.gui.drawTile"));
+		JButton acceptButton = new JButton(currentRes.getString("viciscycle.gui.confirmMoves"));
+		JButton undoButton = new JButton(currentRes.getString("viciscycle.gui.revertMoves"));
+		JButton exitButton = new JButton(currentRes.getString("viciscycle.gui.abandonGame"));
 		
 		try {
 			File HanWangFile = new File("font/WCL-07.ttf");

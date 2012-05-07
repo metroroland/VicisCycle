@@ -21,26 +21,26 @@ import javax.swing.JPanel;
  *
  * @author roland
  */
-public class GameTitleInternalFrame extends javax.swing.JInternalFrame {
+public class MainMenuFrame extends javax.swing.JInternalFrame {
 	
 	/**
-	 * Creates new form GameTitleInternalFrame
+	 * Creates new form MainMenuFrame
 	 */
-	public GameTitleInternalFrame()  {
+	public MainMenuFrame()  {
 		super("15", false, false, false, false);
 		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang"/*
 		 * ,Locale.CHINESE
 		 */);
-		setTitle(currentRes.getString("viciscycle.titlePage"));
+		setTitle(currentRes.getString("viciscycle.gui.gameTitle") + " - " + currentRes.getString("viciscycle.gui.mainMenu"));
 		setBounds(0, 0, 320, 300);
 		setLocation((760 - 320) / 2, (560 - 300) / 2);
 		JPanel gp = new JPanel();
 		gp.setSize(320, 300);
 		
-		JButton startServerButton = new  JButton(currentRes.getString("viciscycle.startServer"));
-		JButton joinGameButton = new JButton(currentRes.getString("viciscycle.joinGame"));
-		JButton creditsButton = new JButton(currentRes.getString("viciscycle.credits"));
-		JButton exitButton = new JButton(currentRes.getString("viciscycle.exit"));
+		JButton startServerButton = new  JButton(currentRes.getString("viciscycle.gui.hostGame"));
+		JButton joinGameButton = new JButton(currentRes.getString("viciscycle.gui.joinGame"));
+		JButton creditsButton = new JButton(currentRes.getString("viciscycle.gui.creditsList"));
+		JButton exitButton = new JButton(currentRes.getString("viciscycle.gui.exitGame"));
 		
 		try {
 			File HanWangFile = new File("font/WCL-07.ttf");
@@ -170,7 +170,7 @@ public class GameTitleInternalFrame extends javax.swing.JInternalFrame {
                 .addComponent(jButton5)
                 .addGap(30, 30, 30)
                 .addComponent(jLabel2)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
