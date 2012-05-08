@@ -35,7 +35,7 @@ public enum TileColor {
 		return nextTileColors.get( this );
 	}
 	
-	public final void paintColors( Graphics2D g, TileOrientation orientation ) {
+	public final void paintColors( Graphics2D g) {
 		// paint the center and margin colors
 		// g.setPaint(new GradientPaint(49, 49, color, 0, 0, Color.WHITE));
 		// g.drawImage(, null, 0, 0);

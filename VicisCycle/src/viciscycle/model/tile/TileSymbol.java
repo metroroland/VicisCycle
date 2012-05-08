@@ -45,12 +45,12 @@ public enum TileSymbol {
 		return nextTileSymbols.get( this );
 	}
 	
-	public final void drawSymbolAndShapes( Graphics2D g, TileOrientation orientation ) {
+	public final void drawSymbolAndShapes( Graphics2D g) {
 		// draw the central symbol image
 		
 		// draw the marginal shapes
-		shape.drawShape( g, orientation, TileMargin.LEFT );
-		this.getNextTileSymbol().shape.drawShape( g, orientation, TileMargin.RIGHT );
+		shape.drawShape( g, TileMargin.LEFT );
+		this.getNextTileSymbol().shape.drawShape( g, TileMargin.RIGHT );
 	}
 	
 	private final Image symbol;
@@ -59,43 +59,43 @@ public enum TileSymbol {
 	private enum TileShape {
 
 		CIRCLE {
-			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw circle
 				
 			}
 		},
 		TRIANGLE {
-			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw triangle
 			}
 		},
 		DIAMOND {
-			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw diamond
 			}
 		},
 		SQUARE {
-			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw square
 			}
 		},
 		PENTAGON {
-			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw pentagon
 			}
 		},
 		HEXAGON {
-			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw hexagon
 			}
 		},
 		OCTAGON {
-			@Override public void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin ) {
+			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw octagon
 			}
 		};
 		
-		public abstract void drawShape( Graphics2D g, TileOrientation orientation, TileMargin margin );
+		public abstract void drawShape( Graphics2D g, TileMargin margin);
 	}
 	
 	private enum TileMargin {

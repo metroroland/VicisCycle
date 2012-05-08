@@ -41,7 +41,7 @@ public class GameRoomFrame extends JInternalFrame{
 		/**control code**/
 		Tile data = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SUN, TileColor.RED ), TileOrientation.UPRIGHT );
 		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT );
-		ImageIcon[] dataIcons = {data,data2};
+		Tile[] dataIcons = {data,data2};
 		for(int i= 0; i<10;i++){
 			model.addElement(dataIcons[1]);
 			model.addElement(dataIcons[0]);

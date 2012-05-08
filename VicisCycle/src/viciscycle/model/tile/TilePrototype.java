@@ -34,9 +34,10 @@ public class TilePrototype {
 		return color;
 	}
 	
-	public final void drawTile( Graphics2D g, TileOrientation orientation ) {
-		symbol.drawSymbolAndShapes( g, orientation );
-		color.paintColors( g, orientation );
+	public final void drawTile( Graphics2D g) {
+		color.paintColors( g);
+		symbol.drawSymbolAndShapes( g);
+		
 		// draw tile border
 		
 	}
