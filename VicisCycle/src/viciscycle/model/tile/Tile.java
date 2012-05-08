@@ -24,7 +24,7 @@ public class Tile extends ImageIcon {
 		this.setImage(image);
 		 shape2 = new Rectangle2D.Double(0, 0, 98, 78);
 		 shape1 = new Rectangle2D.Double(0, 78, 98, 20);
-		 border = new Rectangle2D.Double(0, 0, 96, 94);
+		 border = new Rectangle2D.Double(0, 0, 98, 97);
 	}
 	
 	@Override
@@ -48,7 +48,7 @@ public class Tile extends ImageIcon {
 		//Color colors2[] = {Color.ORANGE,Color.WHITE};
 		gImage.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, Color.ORANGE));
 		gImage.fill(shape1);
-		gImage.setStroke(new BasicStroke(5));
+		gImage.setStroke(new BasicStroke(1));
 		gImage.setPaint( Color.BLACK);
 		gImage.draw(border);
 		gImage.drawImage(this.getImage(),0,0,null);
