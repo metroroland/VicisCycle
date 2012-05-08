@@ -56,6 +56,9 @@ public class GameRoomFrame extends JInternalFrame{
 		stage.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		stage.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		stage.setDragEnabled(true);
+		stage.setFixedCellHeight(92);
+ 	    stage.setFixedCellWidth(92);
+		
 		JList<Tile> rack = new JList<Tile>();
 		rack.setModel(model);
 		rack.setVisibleRowCount(0);
