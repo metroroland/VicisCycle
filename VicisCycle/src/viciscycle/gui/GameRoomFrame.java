@@ -10,6 +10,7 @@ import java.awt.FontFormatException;
 import java.awt.geom.Area;
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.*;
 import viciscycle.model.tile.*;
@@ -21,9 +22,7 @@ import viciscycle.model.tile.*;
 public class GameRoomFrame extends JInternalFrame{
 	public GameRoomFrame(){
 		super("15", false, false, false, false);
-		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang"/*
-		 * ,Locale.CHINESE
-		 */);
+		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang" /* ,Locale.CHINESE*/);
 		
 		setTitle(currentRes.getString("viciscycle.gui.gameTitle") + " - " + currentRes.getString("viciscycle.gui.gameRoom"));
 		setBounds(0, 0, 1060, 700);
@@ -56,8 +55,13 @@ public class GameRoomFrame extends JInternalFrame{
 		stage.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		stage.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		stage.setDragEnabled(true);
+<<<<<<< HEAD
 		stage.setFixedCellHeight(92);
  	    stage.setFixedCellWidth(92);
+=======
+		stage.setFixedCellHeight(96);
+		stage.setFixedCellWidth(96);
+>>>>>>> 341ced63d03444a6c786546caaf1075458b50dd2
 		
 		JList<Tile> rack = new JList<Tile>();
 		rack.setModel(model);
@@ -65,6 +69,7 @@ public class GameRoomFrame extends JInternalFrame{
 		rack.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		rack.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		rack.setDragEnabled(true);
+		
 		
 		//stage.setSize(816, 340);
 		//rack.setSize(1016,180);

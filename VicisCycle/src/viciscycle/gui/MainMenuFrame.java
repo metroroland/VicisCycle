@@ -10,6 +10,7 @@ import java.awt.FontFormatException;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -28,9 +29,9 @@ public class MainMenuFrame extends javax.swing.JInternalFrame {
 	 */
 	public MainMenuFrame()  {
 		super("15", false, false, false, false);
-		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang"/*
-		 * ,Locale.CHINESE
-		 */);
+		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang"
+		  /*,Locale.CHINESE*/
+		 );
 		setTitle(currentRes.getString("viciscycle.gui.gameTitle") + " - " + currentRes.getString("viciscycle.gui.mainMenu"));
 		setBounds(0, 0, 320, 300);
 		setLocation((760 - 320) / 2, (560 - 300) / 2);

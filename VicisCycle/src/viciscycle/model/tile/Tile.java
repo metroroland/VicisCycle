@@ -21,6 +21,7 @@ public class Tile implements Icon{
 	public Tile( TilePrototype tilePrototype, TileOrientation tileOrientation ) {
 		prototype = tilePrototype;
 		orientation = tileOrientation;
+<<<<<<< HEAD
 		 this.tileImage = Toolkit.getDefaultToolkit().getImage("src/viciscycle/graphics/"+TileSymbol.values()[  prototype.getTileSymbol().ordinal()]+".png");
 		
 		 shape2 = new Rectangle2D.Double(0, 0, 90, 70);
@@ -31,6 +32,13 @@ public class Tile implements Icon{
 	@Override
 	public int getIconHeight() {
 		return tileImage.getHeight(null);
+=======
+		 Image image = Toolkit.getDefaultToolkit().getImage("src/viciscycle/graphics/"+TileSymbol.values()[  prototype.getTileSymbol().ordinal()]+".png");
+		this.setImage(image);
+		 shape2 = new Rectangle2D.Double(0, 0, 98, 78);
+		 shape1 = new Rectangle2D.Double(0, 78, 98, 20);
+		 border = new Rectangle2D.Double(0, 0, 98, 97);
+>>>>>>> 341ced63d03444a6c786546caaf1075458b50dd2
 	}
 
 	@Override
