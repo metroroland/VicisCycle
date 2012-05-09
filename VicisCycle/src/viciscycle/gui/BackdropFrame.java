@@ -21,15 +21,15 @@ import javax.swing.JPanel;
  *
  * @author roland
  */
-public class VicisCycleGUI extends javax.swing.JFrame {
+public class BackdropFrame extends javax.swing.JFrame {
 
 	private JDesktopPane mainDesktopPane;
 
 	/**
-	 * Creates new form VicisCycleGUI
+	 * Creates new form BackdropFrame
 	 *
 	 */
-	public VicisCycleGUI() {
+	public BackdropFrame() {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setSize(1100, 940);
 		setResizable(false);
@@ -46,7 +46,7 @@ public class VicisCycleGUI extends javax.swing.JFrame {
 			}
 		} catch (ClassNotFoundException | InstantiationException |
 				IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(VicisCycleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(BackdropFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		MainMenuFrame gameFrame = new MainMenuFrame();
 		mainDesktopPane.add(gameFrame, BorderLayout.CENTER);
@@ -79,13 +79,13 @@ public class VicisCycleGUI extends javax.swing.JFrame {
 				}
 			}
 		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(VicisCycleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(BackdropFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(VicisCycleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(BackdropFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(VicisCycleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(BackdropFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(VicisCycleGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+			java.util.logging.Logger.getLogger(BackdropFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 		}
 		//</editor-fold>
 
@@ -95,7 +95,7 @@ public class VicisCycleGUI extends javax.swing.JFrame {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				new VicisCycleGUI().setVisible(true);
+				new BackdropFrame().setVisible(true);
 			}
 		});
 	}

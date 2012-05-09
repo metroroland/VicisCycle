@@ -10,6 +10,6 @@ import javax.swing.JInternalFrame;
  *
  * @author roland
  */
-public class GameCreditsInternalFrame extends JInternalFrame{
+public class CreditsListFrame extends JInternalFrame{
 	
 }

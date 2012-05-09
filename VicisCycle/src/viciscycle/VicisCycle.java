@@ -17,7 +17,7 @@ public class VicisCycle {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 
 			public void run() {
-				new viciscycle.gui.VicisCycleGUI().setVisible(true);
+				new viciscycle.gui.BackdropFrame().setVisible(true);
 			}
 		});
 	}
