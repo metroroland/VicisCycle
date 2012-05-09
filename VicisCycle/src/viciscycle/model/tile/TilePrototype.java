@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
  */
 public class TilePrototype {
 	
-	public TilePrototype( TileSymbol tileSymbol, TileColor tileColor ) {
+	TilePrototype( TileSymbol tileSymbol, TileColor tileColor ) {
 		symbol = tileSymbol;
 		color = tileColor;
 		//this.
