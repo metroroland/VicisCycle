@@ -12,13 +12,13 @@ import java.util.Random;
  */
 public class TileGameSet {
 	
-	public static void newTileSet( int numberOfPlayers ) {
+	public TileGameSet( int numberOfPlayers ) {
 		
 		// determine the total number of tiles, in terms of the number of base sets to use
 		final int numberOfBaseSets = ( numberOfPlayers <= 4 ? 2 : ( numberOfPlayers <= 6 ? 3 : 4 ) );
 		
 		// create the tiles
-		tiles = new Tile[ ( TileSymbol.values().length * TileColor.values().length + 1 ) * numberOfBaseSets ];
+		tiles = new Tile[ ( TileSymbol.values().length * TileColor.values().length + 1 /* wildcard */ ) * numberOfBaseSets ];
 		int currentTilePos = 0;
 		for ( TileSymbol symbol : TileSymbol.values() ) {
 			for ( TileColor color : TileColor.values() ) {
@@ -49,19 +49,14 @@ public class TileGameSet {
 		nextTilePos = tiles.length - 1;
 	}
 	
-	public static void disposeTileSet() {
-		tiles = null;
-		nextTilePos = -1;
-	}
-	
-	public static boolean hasNextTile() {
+	public boolean hasNextTile() {
 		return ( nextTilePos >= 0 );
 	}
 
-	public static Tile getNextTile() {
+	public Tile getNextTile() {
 		return ( hasNextTile() ? tiles[ nextTilePos-- ] : null );
 	}
 	
-	private static Tile[] tiles = null;
-	private static int nextTilePos = -1;
+	private Tile[] tiles;
+	private int nextTilePos;
 }
