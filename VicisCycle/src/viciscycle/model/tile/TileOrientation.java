@@ -4,6 +4,8 @@
  */
 package viciscycle.model.tile;
 
+import java.util.EnumMap;
+
 /**
  * Enumeration of Tile Orientation
  * @author Kineslight
@@ -14,6 +16,16 @@ public enum TileOrientation {
 	SIDEWAYS;
 	
 	public final TileOrientation getNextTileOrientation() {
-		return TileOrientation.values()[ ( this.ordinal() + 1 ) % TileOrientation.values().length ];
+		return nextTileOrientations.get( this );
+	}
+	
+	private static final EnumMap<TileOrientation, TileOrientation> nextTileOrientations;
+	
+	static {
+		nextTileOrientations = new EnumMap<TileOrientation, TileOrientation>( TileOrientation.class );
+		for ( TileOrientation tileOrientation : TileOrientation.values()  ) {
+			final TileOrientation nextTileOrientation = TileOrientation.values()[ ( tileOrientation.ordinal() + 1 ) % TileOrientation.values().length ];
+			nextTileOrientations.put( tileOrientation, nextTileOrientation );
+		}
 	}
 }
