@@ -21,15 +21,18 @@ public class Tile implements Icon {
 	public Tile( TilePrototype tilePrototype, TileOrientation tileOrientation ) {
 		prototype = tilePrototype;
 		orientation = tileOrientation;
+
 		tileImage = Toolkit.getDefaultToolkit().getImage("src/viciscycle/graphics/" + prototype.getTileSymbol() + ".png");
 		shape2 = new Rectangle2D.Double(0, 0, 90, 70);
 		shape1 = new Rectangle2D.Double(0, 70, 90, 20);
 		border = new Rectangle2D.Double(0, 0, 90, 90);
+
 	}
 
 	@Override
 	public int getIconHeight() {
 		return tileImage.getHeight(null);
+
 	}
 
 	@Override
