@@ -56,7 +56,7 @@ public class GameRoomFrame extends JInternalFrame{
 		stage.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		stage.setDragEnabled(true);
 
-		stage.setFixedCellHeight(92);
+		stage.setFixedCellHeight(94);
  	    stage.setFixedCellWidth(92);
 
 		

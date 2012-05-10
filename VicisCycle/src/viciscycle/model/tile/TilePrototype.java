@@ -4,10 +4,9 @@
  */
 package viciscycle.model.tile;
 
-import java.awt.Component;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import javax.swing.ImageIcon;
 
 /**
@@ -36,13 +35,17 @@ public class TilePrototype {
 	
 	public final void drawTile( Graphics2D g) {
 		color.paintColors( g);
-		symbol.drawSymbolAndShapes( g);
-		
+		symbol.drawSymbolAndShapes( g);		
+
 		// draw tile border
-		
+		border = new Rectangle2D.Double(1, 0, 89, 89);
+		g.setStroke(new BasicStroke(1));
+		g.setPaint( Color.BLACK);
+		g.draw(border);
 	}
 	
 	private TileSymbol symbol;
 	private TileColor color;
-	
+
+	private Shape border;
 }

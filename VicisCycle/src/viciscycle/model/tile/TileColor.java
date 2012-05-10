@@ -4,10 +4,9 @@
  */
 package viciscycle.model.tile;
 
+import java.awt.*;
 import java.util.EnumMap;
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  * Enumeration of Tile Colors
@@ -37,11 +36,21 @@ public enum TileColor {
 	
 	public final void paintColors( Graphics2D g) {
 		// paint the center and margin colors
+		shape2 = new Rectangle2D.Double(0, 0, 90, 70);
+		shape1 = new Rectangle2D.Double(0, 70, 90, 20);
+	
+		g.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, Color.RED));
+		g.fill(shape2);
+		//Color colors2[] = {Color.ORANGE,Color.WHITE};
+		g.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, Color.ORANGE));
+		g.fill(shape1);
 		// g.setPaint(new GradientPaint(49, 49, color, 0, 0, Color.WHITE));
 		// g.drawImage(, null, 0, 0);
 	}
 	
 	private final Color color;
+	private Shape shape2;
+	private Shape shape1;
 	
 	private static final EnumMap<TileColor, TileColor> previousTileColors;
 	private static final EnumMap<TileColor, TileColor> nextTileColors;

@@ -4,9 +4,10 @@
  */
 package viciscycle.model.tile;
 
+import java.awt.*;
 import java.util.EnumMap;
-import java.awt.Image;
-import java.awt.Graphics2D;
+import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -47,10 +48,17 @@ public enum TileSymbol {
 	
 	public final void drawSymbolAndShapes( Graphics2D g) {
 		// draw the central symbol image
+			//draw shape
+		AlphaComposite composite = AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 0.3f);
+		g.setComposite(composite);
+		g.setPaint( Color.BLACK);
+		g.setStroke(new BasicStroke(2));	
 		
 		// draw the marginal shapes
 		shape.drawShape( g, TileMargin.LEFT );
 		this.getNextTileSymbol().shape.drawShape( g, TileMargin.RIGHT );
+		composite = AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, 1f);
+		g.setComposite(composite);
 	}
 	
 	private final Image symbol;
@@ -61,22 +69,29 @@ public enum TileSymbol {
 		CIRCLE {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw circle
-				
+				Ellipse2D e = new Ellipse2D.Double(-10, 35, 20, 20);
+				g.draw(e);
 			}
 		},
 		TRIANGLE {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw triangle
+				Rectangle2D r = new Rectangle2D.Double(80, 35, 20, 20);
+				g.draw(r);
 			}
 		},
 		DIAMOND {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw diamond
+				Rectangle2D r = new Rectangle2D.Double(80, 35, 20, 20);
+				g.draw(r);
 			}
 		},
 		SQUARE {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw square
+				Rectangle2D r = new Rectangle2D.Double(80, 35, 20, 20);
+				g.draw(r);
 			}
 		},
 		PENTAGON {
