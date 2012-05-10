@@ -35,7 +35,7 @@ public class Tile implements Icon {
 	
 	
 	@Override
-	public void paintIcon(Component c,Graphics g,int x,int y){
+	public void paintIcon(Component c,Graphics g,int x,int y) {
 		Graphics2D g2d = (Graphics2D)g;
 		
 		
@@ -60,17 +60,18 @@ public class Tile implements Icon {
 		g2d.drawImage(image, 0, 0, c);
 		
 	}
-	public TilePrototype getTilePrototype(){
+	
+	public TilePrototype getTilePrototype() {
 		return prototype;
 	}
-	public final void  rotateTile(){
+	
+	public final void rotateTile() {
 		
-		orientation.getNextTileOrientation();
-
-			
+		orientation = orientation.getNextTileOrientation();
+		
 	}
+	
 	private final TilePrototype prototype;
-	private final TileOrientation orientation;
-
+	private TileOrientation orientation;
 	private Image tileImage;
 }
