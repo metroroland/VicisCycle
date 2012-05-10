@@ -4,8 +4,12 @@
  */
 package viciscycle.model.tile;
 
-import java.awt.*;
-import java.awt.geom.Ellipse2D;
+
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import javax.swing.ImageIcon;
 
@@ -38,7 +42,7 @@ public class TilePrototype {
 		symbol.drawSymbolAndShapes( g);		
 
 		// draw tile border
-		border = new Rectangle2D.Double(1, 0, 89, 89);
+		border = new Rectangle2D.Double(1, 0, 88, 89);
 		g.setStroke(new BasicStroke(1));
 		g.setPaint( Color.BLACK);
 		g.draw(border);

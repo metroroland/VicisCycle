@@ -4,13 +4,12 @@
  */
 package viciscycle.gui;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
-import java.awt.geom.Area;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.*;
 import viciscycle.model.tile.*;
@@ -30,14 +29,11 @@ public class GameRoomFrame extends JInternalFrame{
 		JPanel gp = new JPanel();
 		gp.setSize(1060, 600);
 
-		JList<ImageIcon> stage = new JList<>();
-		
-		DefaultListModel model = new DefaultListModel();
-		
-		
-		
-		
 		/**control code**/
+
+		stage = new JList<>();
+		 model = new DefaultListModel();
+
 		Tile data = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SUN, TileColor.RED ), TileOrientation.UPRIGHT );
 		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT );
 		Tile[] dataIcons = {data,data2};
@@ -58,7 +54,45 @@ public class GameRoomFrame extends JInternalFrame{
 
 		stage.setFixedCellHeight(94);
  	    stage.setFixedCellWidth(92);
+		stage.addMouseListener(new MouseListener() {
 
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				switch (e.getButton()){
+					case MouseEvent.BUTTON1:
+						break;
+					case MouseEvent.BUTTON3:
+						try{
+							Tile t = (Tile)model.getElementAt(stage.locationToIndex(e.getPoint()));
+							//t.switchState();
+							stage.repaint();
+						}catch(Exception ex){
+							
+						}					
+						break;						
+				}
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				
+			}
+		});
 		
 		JList<Tile> rack = new JList<Tile>();
 		rack.setModel(model);
@@ -126,4 +160,6 @@ public class GameRoomFrame extends JInternalFrame{
 	private JButton confirmMovesButton;
 	private JButton revertMovesButton;
 	private JButton abandonGameButton;
+	JList<ImageIcon> stage;
+	DefaultListModel model;
 }

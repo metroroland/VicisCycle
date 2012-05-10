@@ -5,12 +5,8 @@
 package viciscycle.model.tile;
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import javax.swing.Icon;
-import javax.swing.ImageIcon;
 
 /**
  * Actual Instance of a Tile
@@ -23,7 +19,7 @@ public class Tile implements Icon {
 		orientation = tileOrientation;
 
 		tileImage = Toolkit.getDefaultToolkit().getImage("src/viciscycle/graphics/" + prototype.getTileSymbol() + ".png");
-
+		
 	}
 
 	@Override
@@ -66,6 +62,12 @@ public class Tile implements Icon {
 	}
 	public TilePrototype getTilePrototype(){
 		return prototype;
+	}
+	public final void  rotateTile(){
+		
+		orientation.getNextTileOrientation();
+
+			
 	}
 	private final TilePrototype prototype;
 	private final TileOrientation orientation;
