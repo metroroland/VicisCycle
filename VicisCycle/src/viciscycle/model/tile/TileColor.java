@@ -39,10 +39,10 @@ public enum TileColor {
 		shape2 = new Rectangle2D.Double(0, 0, 90, 70);
 		shape1 = new Rectangle2D.Double(0, 70, 90, 20);
 	
-		g.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, Color.RED));
+		g.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, this.color));
 		g.fill(shape2);
 		//Color colors2[] = {Color.ORANGE,Color.WHITE};
-		g.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, Color.ORANGE));
+		g.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, this.getNextTileColor().color));
 		g.fill(shape1);
 		// g.setPaint(new GradientPaint(49, 49, color, 0, 0, Color.WHITE));
 		// g.drawImage(, null, 0, 0);

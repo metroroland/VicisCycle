@@ -35,12 +35,26 @@ public class GameRoomFrame extends JInternalFrame{
 		 model = new DefaultListModel();
 
 		Tile data = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SUN, TileColor.RED ), TileOrientation.UPRIGHT );
-		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT );
+		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.ORANGE), TileOrientation.UPRIGHT );
+		Tile data3 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.YELLOW), TileOrientation.UPRIGHT );
+		Tile data4 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.GREEN),TileOrientation.UPRIGHT );
+		Tile data5 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.BLUE), TileOrientation.UPRIGHT );
+		Tile data6 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.INDIGO), TileOrientation.UPRIGHT );
+		Tile data7 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.VIOLET), TileOrientation.UPRIGHT );
+		
 		Tile[] dataIcons = {data,data2};
-		for(int i= 0; i<10;i++){
+		
+		
+		for(int i= 0; i<4;i++){
 			model.addElement(dataIcons[1]);
 			model.addElement(dataIcons[0]);
-			model.addElement(dataIcons[1]);
+			model.addElement(data3);
+			model.addElement(data2);
+			model.addElement(data4);
+			model.addElement(data5);
+			model.addElement(data6);
+			model.addElement(data7);
+			model.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT ));
 		}
 		
 		
@@ -69,7 +83,7 @@ public class GameRoomFrame extends JInternalFrame{
 					case MouseEvent.BUTTON3:
 						try{
 							Tile t = (Tile)model.getElementAt(stage.locationToIndex(e.getPoint()));
-							//t.switchState();
+							t.rotateTile();
 							stage.repaint();
 						}catch(Exception ex){
 							
@@ -154,6 +168,8 @@ public class GameRoomFrame extends JInternalFrame{
 					.addComponent(rackScrollPane)
 					.addGap(10,10,10)
 				);
+		
+
 	}
 	
 	private JButton drawTileButton;
