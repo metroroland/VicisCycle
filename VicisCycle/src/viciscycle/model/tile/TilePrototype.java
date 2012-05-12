@@ -17,9 +17,11 @@ import javax.swing.ImageIcon;
  * Prototype for Each Unique Tile
  * @author Kineslight
  */
-public class TilePrototype {
+public class TilePrototype 
+{
 	
-	TilePrototype( TileSymbol tileSymbol, TileColor tileColor ) {
+	TilePrototype( TileSymbol tileSymbol, TileColor tileColor )
+	{
 		symbol = tileSymbol;
 		color = tileColor;
 		//this.
@@ -27,22 +29,29 @@ public class TilePrototype {
 		
 	}
 	
-	public ImageIcon getImageIcon(){
+	public ImageIcon getImageIcon()
+	{
 		return new ImageIcon();
 	}
-	public TileSymbol getTileSymbol(){
+	public TileSymbol getTileSymbol()
+	{
 		return symbol;
 	}
-	public TileColor getTileColor(){
+	public TileColor getTileColor()
+	{
 		return color;
 	}
 	
-	public final void drawTile( Graphics2D g) {
+	public final void drawTile( Graphics2D g,TileOrientation orientaion) 
+	{
 		color.paintColors( g);
 		symbol.drawSymbolAndShapes( g);		
 
 		// draw tile border
-		border = new Rectangle2D.Double(1, 0, 88, 89);
+		if(orientaion == TileOrientation.UPRIGHT)
+			border = new Rectangle2D.Double(0, 0, 89, 89);
+		else
+			border = new Rectangle2D.Double(1, 0, 89, 89);
 		g.setStroke(new BasicStroke(1));
 		g.setPaint( Color.BLACK);
 		g.draw(border);

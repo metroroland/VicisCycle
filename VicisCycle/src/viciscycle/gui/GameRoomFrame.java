@@ -67,7 +67,7 @@ public class GameRoomFrame extends JInternalFrame{
 		stage.setDragEnabled(true);
 
 		stage.setFixedCellHeight(94);
- 	    stage.setFixedCellWidth(92);
+ 	    stage.setFixedCellWidth(94);
 		stage.addMouseListener(new MouseListener() {
 
 			@Override

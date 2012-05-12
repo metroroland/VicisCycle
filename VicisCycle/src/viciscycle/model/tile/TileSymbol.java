@@ -7,6 +7,7 @@ package viciscycle.model.tile;
 import java.awt.*;
 import java.util.EnumMap;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.GeneralPath;
 import java.awt.geom.Rectangle2D;
 import java.io.File;
 import java.io.IOException;
@@ -69,14 +70,26 @@ public enum TileSymbol {
 		CIRCLE {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw circle
-				Ellipse2D e = new Ellipse2D.Double(-10, 35, 20, 20);
+				int p =0;
+				if(margin == TileMargin.RIGHT){
+					p = 90;
+				}
+				Ellipse2D e = new Ellipse2D.Double(p-10, 35, 20, 20);
 				g.draw(e);
 			}
 		},
 		TRIANGLE {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw triangle
-				Rectangle2D r = new Rectangle2D.Double(80, 35, 20, 20);
+				int p =0;
+				if(margin == TileMargin.RIGHT){
+					p = 90;
+				}
+				GeneralPath r = new GeneralPath();
+				r.moveTo(p, 35);
+				r.lineTo(p-10, 55);
+				r.lineTo(p+10, 55);
+				r.lineTo(p, 35);
 				g.draw(r);
 			}
 		},
@@ -90,7 +103,11 @@ public enum TileSymbol {
 		SQUARE {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw square
-				Rectangle2D r = new Rectangle2D.Double(80, 35, 20, 20);
+				int p =0;
+				if(margin == TileMargin.RIGHT){
+					p = 90;
+				}
+				Rectangle2D r = new Rectangle2D.Double(p-10, 35, 20, 20);
 				g.draw(r);
 			}
 		},

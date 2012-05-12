@@ -40,7 +40,7 @@ public class Tile implements Icon {
 		
 		
 		//code to migrate
-		BufferedImage image = new BufferedImage(92, 92, BufferedImage.TYPE_INT_ARGB);
+		BufferedImage image = new BufferedImage(91, 90, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D gImage = image.createGraphics();
 		gImage.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
@@ -52,10 +52,10 @@ public class Tile implements Icon {
 	
 		
 		if (this.orientation == TileOrientation.SIDEWAYS){
-			gImage.rotate(-Math.PI/2);
-			gImage.translate(-92,0 );
+			gImage.rotate(-90*Math.PI/180);
+			gImage.translate(-90,0 );
 		}
-		prototype.drawTile(gImage);
+		prototype.drawTile(gImage,this.orientation);
 		gImage.drawImage(tileImage,0,0,null);
 		g2d.drawImage(image, 0, 0, c);
 		
