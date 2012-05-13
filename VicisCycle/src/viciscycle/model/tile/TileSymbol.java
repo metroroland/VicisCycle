@@ -96,7 +96,16 @@ public enum TileSymbol {
 		DIAMOND {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw diamond
-				Rectangle2D r = new Rectangle2D.Double(80, 35, 20, 20);
+					int p =0;
+				if(margin == TileMargin.RIGHT){
+					p = 90;
+				}
+				GeneralPath r = new GeneralPath();
+				r.moveTo(p, 35);
+				r.lineTo(p-10, 45);
+				r.lineTo(p, 55);
+				r.lineTo(p+10, 45);
+				r.lineTo(p, 35);
 				g.draw(r);
 			}
 		},
@@ -114,16 +123,60 @@ public enum TileSymbol {
 		PENTAGON {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw pentagon
+				int p =0;
+				if(margin == TileMargin.RIGHT){
+					p = 90;
+				}
+				double b = 10*Math.tan(36*Math.PI/180);
+				double c = (20-b)*Math.tan(18*Math.PI/180);
+				GeneralPath r = new GeneralPath();
+				r.moveTo(p, 35);
+				r.lineTo(p-10, b+35);
+				r.lineTo(p-10+c, 55);
+				r.lineTo(p+10-c, 55);
+				r.lineTo(p+10,b+ 35);
+				r.lineTo(p, 35);
+				g.draw(r);
 			}
 		},
 		HEXAGON {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw hexagon
+						int p =0;
+				if(margin == TileMargin.RIGHT){
+					p = 90;
+				}
+				double a = 10*Math.tan(30*Math.PI/180);
+				GeneralPath r = new GeneralPath();
+				r.moveTo(p-10+a, 35);
+				r.lineTo(p-10, 45);
+				r.lineTo(p-10+a, 55);
+				r.lineTo(p+10-a, 55);
+				r.lineTo(p+10,45);
+				r.lineTo(p+10-a, 35);
+				r.lineTo(p-10+a, 35);
+				g.draw(r);
 			}
 		},
 		OCTAGON {
 			@Override public void drawShape( Graphics2D g, TileMargin margin) {
 				// draw octagon
+				int p =0;
+				if(margin == TileMargin.RIGHT){
+					p = 90;
+				}
+				double b = 20*Math.cos(45*Math.PI/180)/(1+2*Math.cos(45*Math.PI/180));
+				GeneralPath r = new GeneralPath();
+				r.moveTo(p-10+b, 35);
+				r.lineTo(p-10,b+35);
+				r.lineTo(p-10, 55-b);
+				r.lineTo(p-10+b, 55);
+				r.lineTo(p+10-b, 55);
+				r.lineTo(p+10,55-b);
+				r.lineTo(p+10, 35+b);
+				r.lineTo(p+10-b, 35);
+				r.lineTo(p-10+b, 35);
+				g.draw(r);
 			}
 		};
 		

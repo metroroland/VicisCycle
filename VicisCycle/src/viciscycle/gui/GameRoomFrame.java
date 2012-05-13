@@ -36,11 +36,11 @@ public class GameRoomFrame extends JInternalFrame{
 
 		Tile data = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SUN, TileColor.RED ), TileOrientation.UPRIGHT );
 		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.ORANGE), TileOrientation.UPRIGHT );
-		Tile data3 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.YELLOW), TileOrientation.UPRIGHT );
-		Tile data4 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.GREEN),TileOrientation.UPRIGHT );
-		Tile data5 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.BLUE), TileOrientation.UPRIGHT );
-		Tile data6 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.INDIGO), TileOrientation.UPRIGHT );
-		Tile data7 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.VIOLET), TileOrientation.UPRIGHT );
+		Tile data3 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MOON, TileColor.YELLOW), TileOrientation.UPRIGHT );
+		Tile data4 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SATURN, TileColor.GREEN),TileOrientation.UPRIGHT );
+		Tile data5 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.JUPITER, TileColor.BLUE), TileOrientation.UPRIGHT );
+		Tile data6 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MARS, TileColor.INDIGO), TileOrientation.UPRIGHT );
+		Tile data7 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.VENUS, TileColor.VIOLET), TileOrientation.UPRIGHT );
 		
 		Tile[] dataIcons = {data,data2};
 		
