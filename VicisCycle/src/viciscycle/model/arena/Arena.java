@@ -11,51 +11,68 @@ import java.util.ArrayList;
 import java.util.EnumMap;
 
 /**
- * Arena for Stage, Stage Backup, and Player Racks
+ * Class Representing Stage along with Respective Backup,
+ * as well as Player Racks along with Respective Backups
  * @author Kineslight
  */
-public enum Arena {
+public final class Arena implements Cloneable {
 	
-	STAGE( 256 ),
-	STAGE_BACKUP( 256 ),
-	PLAYER_RACK_1( 32 ),
-	PLAYER_RACK_2( 32 ),
-	PLAYER_RACK_3( 32 ),
-	PLAYER_RACK_4( 32 ),
-	PLAYER_RACK_5( 32 ),
-	PLAYER_RACK_6( 32 ),
-	PLAYER_RACK_7( 32 ),
-	PLAYER_RACK_8( 32 );
+	public enum ArenaType {
+		
+		STAGE( 256 ),
+		RACK( 32 );
+		
+		public final int getSize() {
+			return size;
+		}
+		
+		private ArenaType( int arenaSize ) {
+			size = arenaSize;
+		}
+		
+		private final int size;
+	}
+	
+	public enum ArenaState {
+		
+		CURRENT,
+		BACKUP;
+	}
+	
+	public Arena( ArenaType arenaType ) {
+		
+		type = arenaType;
+		arena = new ArrayList<Tile>( arenaType.getSize() );
+	}
+	
+	@Override
+	public Arena clone() {
+		
+		// call Object.clone()
+		Arena clone = null;
+		try {
+			clone = (Arena) super.clone();
+		}
+		catch ( CloneNotSupportedException e ) {
+			// would not actually happen
+			return null;
+		}
+		
+		// clone arena-specific data
+		clone.type = type;
+		clone.arena = new ArrayList<Tile>( type.getSize() );
+		for ( Tile tile : arena ) {
+			clone.arena.add( tile );
+		}
+		
+		return clone;
+	}
 	
 	public void clear() {
+		
 		arena.clear();
 	}
 	
-	private Arena( int initialSize ) {
-		arena = new ArrayList<Tile>( initialSize );
-	}
-	
-	private final ArrayList<Tile> arena;
-	
-	public static Arena getPlayerRack( Player player ) {
-		return playerRacks.get( player );
-	}
-	
-	public static void resetAllArenas() {
-		for ( Arena _arena : Arena.values() ) {
-			_arena.clear();
-		}
-	}
-			
-	private static final EnumMap<Player, Arena> playerRacks;
-	
-	static {
-		
-		// create mapping between players and their respective player racks
-		playerRacks = new EnumMap<Player, Arena>( Player.class );
-		for ( Player player : Player.values() ) {
-			final Arena rack = Arena.valueOf( player.toString().replace( "PLAYER", "PLAYER_RACK" ) );
-			playerRacks.put( player, rack );
-		}
-	}
+	private ArenaType type;
+	private ArrayList<Tile> arena;
 }
