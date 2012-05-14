@@ -26,6 +26,7 @@ public class BackdropFrame extends JFrame {
 	public BackdropFrame() {
 		
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+		setTitle( Resource.getString( "viciscycle.gui.gameTitle" ) );
 		setSize(1100, 940);
 		setResizable(false);
 		mainDesktopPane = new JDesktopPane();
