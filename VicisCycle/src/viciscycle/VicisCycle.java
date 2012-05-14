@@ -4,6 +4,11 @@
  */
 package viciscycle;
 
+import viciscycle.gui.BackdropFrame;
+
+import java.awt.EventQueue;
+
+
 /**
  *
  * @author roland
@@ -14,11 +19,12 @@ public class VicisCycle {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		java.awt.EventQueue.invokeLater(new Runnable() {
+		
+		EventQueue.invokeLater( new Runnable() {
 
 			public void run() {
-				new viciscycle.gui.BackdropFrame().setVisible(true);
+				( new BackdropFrame() ).setVisible( true );
 			}
-		});
+		} );
 	}
 }

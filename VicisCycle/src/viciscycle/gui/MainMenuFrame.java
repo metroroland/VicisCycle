@@ -4,56 +4,53 @@
  */
 package viciscycle.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JInternalFrame;
 
 
 /**
  *
  * @author roland
  */
-public class MainMenuFrame extends javax.swing.JInternalFrame {
+public class MainMenuFrame extends JInternalFrame {
 	
 	/**
 	 * Creates new form MainMenuFrame
 	 */
-	public MainMenuFrame()  {
-		super("15", false, false, false, false);
-		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang"
-		  /*,Locale.CHINESE*/
-		 );
-		setTitle(currentRes.getString("viciscycle.gui.gameTitle") + " - " + currentRes.getString("viciscycle.gui.mainMenu"));
+	public MainMenuFrame() {
+		
+		super( Resource.getString( "viciscycle.gui.gameTitle" ) + " - " + Resource.getString( "viciscycle.gui.mainMenu"),
+				false, false, false, false);
 		setBounds(0, 0, 320, 300);
 		setLocation((760 - 320) / 2, (560 - 300) / 2);
 		JPanel gp = new JPanel();
 		gp.setSize(320, 300);
 		
-		JButton startServerButton = new  JButton(currentRes.getString("viciscycle.gui.hostGame"));
-		JButton joinGameButton = new JButton(currentRes.getString("viciscycle.gui.joinGame"));
-		JButton creditsButton = new JButton(currentRes.getString("viciscycle.gui.creditsList"));
-		JButton exitButton = new JButton(currentRes.getString("viciscycle.gui.exitGame"));
-		
-		try {
-			File HanWangFile = new File("font/WCL-07.ttf");
-			Font HanWangFont = Font.createFont(Font.TRUETYPE_FONT, HanWangFile).deriveFont(Font.PLAIN, 18);
+		hostGameButton = new JButton( Resource.getString( "viciscycle.gui.hostGame" ) );
+		hostGameButton.addActionListener( new ActionListener() {
 			
-			startServerButton.setFont(HanWangFont);
-			joinGameButton.setFont(HanWangFont);
-			creditsButton.setFont(HanWangFont);
-			exitButton.setFont(HanWangFont);
-		} catch (FontFormatException|IOException e) {
-		}
+			@Override
+			public void actionPerformed( ActionEvent e ) {
+				( new HostGameFrame() ).setVisible( true );
+			}
+		} );
 		
+		joinGameButton = new JButton( Resource.getString( "viciscycle.gui.joinGame" ) );
+		showCreditsButton = new JButton( Resource.getString( "viciscycle.gui.creditsList" ) );
+		exitGameButton = new JButton( Resource.getString( "viciscycle.gui.exitGame" ) );
+		
+		Font font = Resource.getFont( Font.PLAIN, 18 );
+		setFont( font );
+		hostGameButton.setFont( font );
+		joinGameButton.setFont( font );
+		showCreditsButton.setFont( font );
+		exitGameButton.setFont( font );
 		
 		
 		JLabel titleLabel = new JLabel();
@@ -70,10 +67,10 @@ public class MainMenuFrame extends javax.swing.JInternalFrame {
 							.addGap(100,100,100))
 						.addGroup(layout.createParallelGroup()
 							.addComponent(titleLabel,180,180,180)
-							.addComponent(startServerButton,180,180,180)
+							.addComponent(hostGameButton,180,180,180)
 							.addComponent(joinGameButton,180,180,180)
-							.addComponent(creditsButton,180,180,180)
-							.addComponent(exitButton,180,180,180)
+							.addComponent(showCreditsButton,180,180,180)
+							.addComponent(exitGameButton,180,180,180)
 						)
 						.addGroup(layout.createParallelGroup()
 							.addGap(100,100,100))
@@ -85,28 +82,22 @@ public class MainMenuFrame extends javax.swing.JInternalFrame {
 						.addContainerGap(50, Short.MAX_VALUE)
 						.addComponent(titleLabel)
 						.addGap(20,20,20)
-						.addComponent(startServerButton)
+						.addComponent(hostGameButton)
 						.addGap(20,20,20)
 						.addComponent(joinGameButton)
 						.addGap(20,20,20)
-						.addComponent(creditsButton)
+						.addComponent(showCreditsButton)
 						.addGap(20,20,20)
-						.addComponent(exitButton)
+						.addComponent(exitGameButton)
 						.addContainerGap(50, Short.MAX_VALUE)
 					)
 
 				);
-		/*JButton b = new JButton(currentRes.getString("viciscycle.startServer"));
-		 * gp.add(b);
-		 * b = new JButton(currentRes.getString("viciscycle.joinGame"));
-		 * gp.add(b);
-		 * b = new JButton(currentRes.getString("viciscycle.credits"));
-		 * gp.add(b);
-		 * b = new JButton(currentRes.getString("viciscycle.exit"));
-		 * gp.add(b);
-		 * add(gp, BorderLayout.CENTER);*/
 		pack();
-		//initComponents();
 	}
 	
+	private JButton hostGameButton;
+	private JButton joinGameButton;
+	private JButton showCreditsButton;
+	private JButton exitGameButton;
 }

@@ -4,26 +4,36 @@
  */
 package viciscycle.gui;
 
+import viciscycle.model.tile.Tile;
+import viciscycle.model.tile.TileSymbol;
+import viciscycle.model.tile.TileColor;
+import viciscycle.model.tile.TileOrientation;
+import viciscycle.model.tile.TileBaseSet;
+
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.IOException;
-import java.util.ResourceBundle;
-import javax.swing.*;
-import viciscycle.model.tile.*;
+import javax.swing.JInternalFrame;
+import javax.swing.JPanel;
+import javax.swing.JList;
+import javax.swing.DefaultListModel;
+import javax.swing.ListSelectionModel;
+import javax.swing.ImageIcon;
+import javax.swing.JScrollPane;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import javax.swing.GroupLayout;
+
 
 /**
  *
  * @author roland
  */
-public class GameRoomFrame extends JInternalFrame{
+public class GameRoomFrame extends JInternalFrame {
+	
 	public GameRoomFrame(){
-		super("15", false, false, false, false);
-		ResourceBundle currentRes = ResourceBundle.getBundle("viciscycle.translation.lang" /* ,Locale.CHINESE*/);
-		
-		setTitle(currentRes.getString("viciscycle.gui.gameTitle") + " - " + currentRes.getString("viciscycle.gui.gameRoom"));
+		super( Resource.getString( "viciscycle.gui.gameTitle" ) + " - " + Resource.getString( "viciscycle.gui.gameRoom" ),
+				false, false, false, false);
 		setBounds(0, 0, 1060, 700);
 		setLocation((800 - 330) / 2, (600 - 310) / 2);
 		JPanel gp = new JPanel();
@@ -122,23 +132,19 @@ public class GameRoomFrame extends JInternalFrame{
 		JScrollPane stageScrollPane= new JScrollPane(stage);
 		//rackScrollPane.setSize(1016, 180);
 				
-		JLabel tileLeftJLabel = new JLabel(currentRes.getString("viciscycle.gui.tilesRemaining") + ":");
+		JLabel tileLeftJLabel = new JLabel( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : ");
 		
-		drawTileButton = new JButton(currentRes.getString("viciscycle.gui.drawTile"));
-		confirmMovesButton = new JButton(currentRes.getString("viciscycle.gui.confirmMoves"));
-		revertMovesButton = new JButton(currentRes.getString("viciscycle.gui.revertMoves"));
-		abandonGameButton = new JButton(currentRes.getString("viciscycle.gui.abandonGame"));
+		drawTileButton = new JButton( Resource.getString( "viciscycle.gui.drawTile" ) );
+		confirmMovesButton = new JButton( Resource.getString( "viciscycle.gui.confirmMoves" ) );
+		revertMovesButton = new JButton( Resource.getString( "viciscycle.gui.revertMoves" ) );
+		abandonGameButton = new JButton( Resource.getString( "viciscycle.gui.abandonGame" ) );
 		
-		try {
-			File HanWangFile = new File("font/WCL-07.ttf");
-			Font HanWangFont = Font.createFont(Font.TRUETYPE_FONT, HanWangFile).deriveFont(Font.PLAIN, 18);
-			
-			revertMovesButton.setFont(HanWangFont);
-			drawTileButton.setFont(HanWangFont);
-			confirmMovesButton.setFont(HanWangFont);
-			abandonGameButton.setFont(HanWangFont);
-		} catch (FontFormatException|IOException e) {
-		}
+		Font font = Resource.getFont( Font.PLAIN, 18 );
+		setFont( font );
+		revertMovesButton.setFont( font );
+		drawTileButton.setFont( font );
+		confirmMovesButton.setFont( font );
+		abandonGameButton.setFont( font );
 		
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
@@ -176,6 +182,6 @@ public class GameRoomFrame extends JInternalFrame{
 	private JButton confirmMovesButton;
 	private JButton revertMovesButton;
 	private JButton abandonGameButton;
-	JList<ImageIcon> stage;
-	DefaultListModel model;
+	private JList<ImageIcon> stage;
+	private DefaultListModel model;
 }
