@@ -32,7 +32,8 @@ public class GameRoomFrame extends JInternalFrame{
 		/**control code**/
 
 		stage = new JList<>();
-		 model = new DefaultListModel();
+		 stageModel = new DefaultListModel();
+		 playerRackModel = new DefaultListModel();
 
 		Tile data = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SUN, TileColor.RED ), TileOrientation.UPRIGHT );
 		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.ORANGE), TileOrientation.UPRIGHT );
@@ -46,28 +47,31 @@ public class GameRoomFrame extends JInternalFrame{
 		
 		
 		for(int i= 0; i<4;i++){
-			model.addElement(dataIcons[1]);
-			model.addElement(dataIcons[0]);
-			model.addElement(data3);
-			model.addElement(data2);
-			model.addElement(data4);
-			model.addElement(data5);
-			model.addElement(data6);
-			model.addElement(data7);
-			model.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT ));
+			stageModel.addElement(dataIcons[1]);
+			stageModel.addElement(dataIcons[0]);
+			stageModel.addElement(data3);
+			stageModel.addElement(data2);
+			stageModel.addElement(data4);
+			stageModel.addElement(data5);
+			stageModel.addElement(data6);
+			stageModel.addElement(data7);
+			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT ));
+			playerRackModel.addElement(dataIcons[1]);
 		}
 		
 		
 		
 		
-		stage.setModel(model);
+		stage.setModel(stageModel);
 		stage.setVisibleRowCount(0);
 		stage.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		stage.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		stage.setDragEnabled(true);
-
+		stage.setDropMode(DropMode.INSERT);
+        stage.setTransferHandler(new TileTransferHandler());
+       
 		stage.setFixedCellHeight(94);
- 	    stage.setFixedCellWidth(94);
+ 	    stage.setFixedCellWidth(90);
 		stage.addMouseListener(new MouseListener() {
 
 			@Override
@@ -82,7 +86,7 @@ public class GameRoomFrame extends JInternalFrame{
 						break;
 					case MouseEvent.BUTTON3:
 						try{
-							Tile t = (Tile)model.getElementAt(stage.locationToIndex(e.getPoint()));
+							Tile t = (Tile)stageModel.getElementAt(stage.locationToIndex(e.getPoint()));
 							t.rotateTile();
 							stage.repaint();
 						}catch(Exception ex){
@@ -109,12 +113,13 @@ public class GameRoomFrame extends JInternalFrame{
 		});
 		
 		JList<Tile> rack = new JList<Tile>();
-		rack.setModel(model);
+		rack.setModel(playerRackModel);
 		rack.setVisibleRowCount(0);
 		rack.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		rack.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		rack.setDragEnabled(true);
-		
+		rack.setDropMode(DropMode.INSERT);
+        rack.setTransferHandler(new TileTransferHandler());
 		
 		//stage.setSize(816, 340);
 		//rack.setSize(1016,180);
@@ -177,5 +182,5 @@ public class GameRoomFrame extends JInternalFrame{
 	private JButton revertMovesButton;
 	private JButton abandonGameButton;
 	JList<ImageIcon> stage;
-	DefaultListModel model;
+	DefaultListModel stageModel,playerRackModel;
 }
