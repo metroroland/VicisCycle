@@ -4,14 +4,27 @@
  */
 package viciscycle.model.player;
 
+import viciscycle.model.arena.Arena;
+import viciscycle.model.arena.Arena.ArenaType;
+import viciscycle.model.arena.Arena.ArenaState;
+
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.EnumMap;
+
 
 /**
  * Class Representing Each Player
  * @author Kineslight
  */
 public final class Player {
+	
+	public Player() {
+		
+		racks = new EnumMap<ArenaState, Arena>( ArenaState.class );
+		racks.put( ArenaState.CURRENT, new Arena( ArenaType.RACK ));
+		racks.put( ArenaState.REPLICA, new Arena( ArenaType.RACK ));
+	}
 	
 	public final String getName() {
 		
@@ -55,6 +68,11 @@ public final class Player {
 		scores.clear();
 	}
 	
+	public final Arena getRack( ArenaState state ) {
+		
+		return racks.get( state );
+	}
+	
 	@Override
 	public String toString() {
 		
@@ -64,4 +82,5 @@ public final class Player {
 	private String name = null;
 	private Socket socket = null;
 	private final ArrayList<Integer> scores = new ArrayList<Integer>(16);
+	private final EnumMap<ArenaState, Arena> racks;
 }

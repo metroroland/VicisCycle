@@ -10,6 +10,7 @@ import viciscycle.model.player.Player;
 import java.util.ArrayList;
 import java.util.EnumMap;
 
+
 /**
  * Class Representing Stage along with Respective Backup,
  * as well as Player Racks along with Respective Backups
@@ -36,7 +37,7 @@ public final class Arena implements Cloneable {
 	public enum ArenaState {
 		
 		CURRENT,
-		BACKUP;
+		REPLICA;
 	}
 	
 	public Arena( ArenaType arenaType ) {
