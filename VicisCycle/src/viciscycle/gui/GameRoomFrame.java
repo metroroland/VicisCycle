@@ -131,7 +131,7 @@ public class GameRoomFrame extends JInternalFrame {
 		JScrollPane stageScrollPane= new JScrollPane(stage);
 		//rackScrollPane.setSize(1016, 180);
 				
-		JLabel tileLeftJLabel = new JLabel( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : ");
+		JLabel tilesRemainingLabel = new JLabel( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : ");
 		
 		drawTileButton = new JButton( Resource.getString( "viciscycle.gui.drawTile" ) );
 		confirmMovesButton = new JButton( Resource.getString( "viciscycle.gui.confirmMoves" ) );
@@ -140,6 +140,7 @@ public class GameRoomFrame extends JInternalFrame {
 		
 		Font font = Resource.getFont( Font.PLAIN, 18 );
 		setFont( font );
+		tilesRemainingLabel.setFont( font );
 		revertMovesButton.setFont( font );
 		drawTileButton.setFont( font );
 		confirmMovesButton.setFont( font );
@@ -151,7 +152,7 @@ public class GameRoomFrame extends JInternalFrame {
 				layout.createParallelGroup(GroupLayout.Alignment.CENTER)
 					.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 800, 800, 800)
 					.addGroup(layout.createSequentialGroup()
-						.addComponent(tileLeftJLabel)
+						.addComponent(tilesRemainingLabel)
 						.addComponent(drawTileButton)
 						.addComponent(confirmMovesButton)
 						.addComponent(revertMovesButton)
@@ -164,7 +165,7 @@ public class GameRoomFrame extends JInternalFrame {
 					.addComponent(stageScrollPane,340,340,340)
 					.addGap(10,10,10)
 					.addGroup(layout.createParallelGroup()
-						.addComponent(tileLeftJLabel,GroupLayout.Alignment.LEADING)
+						.addComponent(tilesRemainingLabel,GroupLayout.Alignment.CENTER)
 						.addComponent(drawTileButton)
 						.addComponent(confirmMovesButton)
 						.addComponent(revertMovesButton)
