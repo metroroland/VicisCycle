@@ -43,10 +43,10 @@ public class TileTransferHandler extends TransferHandler {
 			  icons[i] =(Tile) list.getModel().getElementAt(i);
               //dlm.removeElementAt(selectedIndices[i]);
           } 
-      int index = list.getSelectedIndex();
+     /* int index = list.getSelectedIndex();
       if (index < 0) return null;
-      Tile icon = (Tile) list.getModel().getElementAt(index);
-      return new TileTransferable(icon);
+      Tile icon = (Tile) list.getModel().getElementAt(index);*/
+      return new TileTransferable(icons);
    }
 
    protected void exportDone(JComponent source, Transferable data, int action)
@@ -54,10 +54,16 @@ public class TileTransferHandler extends TransferHandler {
       if (action == MOVE)
       {
          JList list = (JList) source;
-         int index = list.getSelectedIndex();
+		   int[] selectedIndices = list.getSelectedIndices();
+		  Tile[]icons = new Tile[selectedIndices.length];
+	      DefaultListModel model = (DefaultListModel) list.getModel();
+          for (int i = selectedIndices.length-1; i >=0; i--) {        
+			   model.remove(selectedIndices[i]);
+          } 
+         /*int index = list.getSelectedIndex();
          if (index < 0) return;
          DefaultListModel model = (DefaultListModel) list.getModel();
-         model.remove(index);
+         model.remove(index);*/
       }
    }
 
@@ -86,7 +92,7 @@ public class TileTransferHandler extends TransferHandler {
       Transferable transferable = support.getTransferable();
       List<DataFlavor> flavors = Arrays.asList(transferable.getTransferDataFlavors());
 
-      List<Tile> images = new ArrayList<Tile>();
+      List<Tile> tileList = new ArrayList<Tile>();
 	  
       try
       {
@@ -108,7 +114,11 @@ public class TileTransferHandler extends TransferHandler {
          }
          else if (flavors.contains(dataFlavor))
          {
-            images.add((Tile) transferable.getTransferData(dataFlavor));
+			 Tile[] Tile_array =(Tile[]) transferable.getTransferData(dataFlavor);
+			 for (int i = 0; i < Tile_array.length; i++) {
+				 tileList.add(Tile_array[i]);
+			 }
+            
          }
 
          int index;
@@ -124,7 +134,7 @@ public class TileTransferHandler extends TransferHandler {
          else {
 			 index = model.size();
 		 }
-         for (Tile image : images)
+         for (Tile image : tileList)
          {
             model.add(index, image);
             index++;

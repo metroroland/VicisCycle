@@ -14,9 +14,9 @@ import java.io.IOException;
  * @author roland
  */
 public class TileTransferable implements Transferable {
-	Tile t ;
+	Tile[] t ;
 	  DataFlavor dataFlavor = new DataFlavor(Tile.class,Tile.class.getSimpleName());
-	public TileTransferable(Tile tile){
+	public TileTransferable(Tile[] tile){
 		t=tile;
 		
 	}
