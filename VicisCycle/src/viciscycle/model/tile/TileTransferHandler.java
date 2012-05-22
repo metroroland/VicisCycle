@@ -35,6 +35,14 @@ public class TileTransferHandler extends TransferHandler {
    protected Transferable createTransferable(JComponent source)
    {
       JList list = (JList) source;
+	  
+	
+	  int[] selectedIndices = list.getSelectedIndices();
+	  Tile[]icons = new Tile[selectedIndices.length];
+          for (int i = selectedIndices.length-1; i >=0; i--) {
+			  icons[i] =(Tile) list.getModel().getElementAt(i);
+              //dlm.removeElementAt(selectedIndices[i]);
+          } 
       int index = list.getSelectedIndex();
       if (index < 0) return null;
       Tile icon = (Tile) list.getModel().getElementAt(index);
