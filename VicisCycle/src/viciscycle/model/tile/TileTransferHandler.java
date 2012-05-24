@@ -39,7 +39,7 @@ public class TileTransferHandler extends TransferHandler {
 	
 	  int[] selectedIndices = list.getSelectedIndices();
 	  Tile[]icons = new Tile[selectedIndices.length];
-          for (int i = selectedIndices.length-1; i >=0; i--) {
+          for (int i = selectedIndices.length; i >=1; i--) {
 			  icons[i] =(Tile) list.getModel().getElementAt(i);
               //dlm.removeElementAt(selectedIndices[i]);
           } 
