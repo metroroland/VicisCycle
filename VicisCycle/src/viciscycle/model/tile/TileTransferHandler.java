@@ -39,8 +39,8 @@ public class TileTransferHandler extends TransferHandler {
 	
 	  int[] selectedIndices = list.getSelectedIndices();
 	  Tile[]icons = new Tile[selectedIndices.length];
-          for (int i = selectedIndices.length; i >=1; i--) {
-			  icons[i] =(Tile) list.getModel().getElementAt(i);
+          for (int i = selectedIndices.length-1; i >=0; i--) {
+			  icons[i] =(Tile) list.getModel().getElementAt(selectedIndices[i]);
               //dlm.removeElementAt(selectedIndices[i]);
           } 
      /* int index = list.getSelectedIndex();
@@ -55,11 +55,17 @@ public class TileTransferHandler extends TransferHandler {
       {
          JList list = (JList) source;
 		   int[] selectedIndices = list.getSelectedIndices();
-		  Tile[]icons = new Tile[selectedIndices.length];
+		  try{
+			  Tile[] icons =(Tile[]) data.getTransferData(dataFlavor);
+		  }catch(Exception e){
+			  
+		  }
 	      DefaultListModel model = (DefaultListModel) list.getModel();
+		  
           for (int i = selectedIndices.length-1; i >=0; i--) {        
 			   model.remove(selectedIndices[i]);
-          } 
+          
+		  }
          /*int index = list.getSelectedIndex();
          if (index < 0) return;
          DefaultListModel model = (DefaultListModel) list.getModel();
@@ -114,6 +120,7 @@ public class TileTransferHandler extends TransferHandler {
          }
          else if (flavors.contains(dataFlavor))
          {
+			 
 			 Tile[] Tile_array =(Tile[]) transferable.getTransferData(dataFlavor);
 			 for (int i = 0; i < Tile_array.length; i++) {
 				 tileList.add(Tile_array[i]);

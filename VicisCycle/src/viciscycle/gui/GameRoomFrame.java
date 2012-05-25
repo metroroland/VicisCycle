@@ -86,6 +86,7 @@ public class GameRoomFrame extends JInternalFrame {
 			public void mousePressed(MouseEvent e) {
 				switch (e.getButton()){
 					case MouseEvent.BUTTON1:
+						
 						break;
 					case MouseEvent.BUTTON3:
 						try{
