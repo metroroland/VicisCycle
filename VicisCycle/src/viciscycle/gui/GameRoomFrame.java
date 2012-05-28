@@ -12,8 +12,11 @@ import viciscycle.model.tile.TileBaseSet;
 import viciscycle.model.tile.TileTransferHandler;
 
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Rectangle2D;
 import javax.swing.*;
 
 
@@ -30,13 +33,13 @@ public class GameRoomFrame extends JInternalFrame {
 		setLocation((800 - 330) / 2, (600 - 310) / 2);
 		JPanel gp = new JPanel();
 		gp.setSize(1060, 600);
-
+		
 		/**control code**/
-
-		stage = new JList<>();
+		
+		
 		stageModel = new DefaultListModel();
 		playerRackModel = new DefaultListModel();
-
+		
 		Tile data = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SUN, TileColor.RED ), TileOrientation.UPRIGHT );
 		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.ORANGE), TileOrientation.UPRIGHT );
 		Tile data3 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MOON, TileColor.YELLOW), TileOrientation.UPRIGHT );
@@ -63,25 +66,25 @@ public class GameRoomFrame extends JInternalFrame {
 		
 		
 		
-		
+		stage = new JList<>();
 		stage.setModel(stageModel);
 		stage.setVisibleRowCount(0);
 		stage.setLayoutOrientation(JList.HORIZONTAL_WRAP);
 		stage.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 		stage.setDragEnabled(true);
-
+		
 		stage.setDropMode(DropMode.INSERT);
 		stage.setTransferHandler(new TileTransferHandler());
 		
 		stage.setFixedCellHeight(94);
 		stage.setFixedCellWidth(90);
 		stage.addMouseListener(new MouseListener() {
-
+			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			
+				
 			}
-
+			
 			@Override
 			public void mousePressed(MouseEvent e) {
 				switch (e.getButton()){
@@ -94,26 +97,31 @@ public class GameRoomFrame extends JInternalFrame {
 							stage.repaint();
 						}catch(Exception ex){
 							
-						}					
-						break;						
+						}
+						break;
 				}
 			}
-
+			
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				
 			}
-
+			
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				
 			}
-
+			
 			@Override
 			public void mouseExited(MouseEvent e) {
 				
 			}
 		});
+		
+		//highlight layer need to use Jcomponent
+		JPanel highlightPanel = new JPanel();
+		HighlightRect h1 = new HighlightRect(1, 1);
+		highlightPanel.add(h1);
 		
 		JList<Tile> rack = new JList<Tile>();
 		rack.setModel(playerRackModel);
@@ -128,9 +136,13 @@ public class GameRoomFrame extends JInternalFrame {
 		//stage.setSize(816, 340);
 		//rack.setSize(1016,180);
 		JScrollPane rackScrollPane = new JScrollPane(rack);
-		JScrollPane stageScrollPane= new JScrollPane(stage);
+		stageLayeredPane = new JLayeredPane();
+		stageLayeredPane.setLayout(new GridLayout(1,1));
+		stageLayeredPane.add(stage, new Integer(1));
+		stageLayeredPane.add(highlightPanel, new Integer(2));
+		JScrollPane stageScrollPane= new JScrollPane(stageLayeredPane);
 		//rackScrollPane.setSize(1016, 180);
-				
+		
 		JLabel tilesRemainingLabel = new JLabel( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : ");
 		
 		drawTileButton = new JButton( Resource.getString( "viciscycle.gui.drawTile" ) );
@@ -150,32 +162,32 @@ public class GameRoomFrame extends JInternalFrame {
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
 				layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-					.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 800, 800, 800)
-					.addGroup(layout.createSequentialGroup()
-						.addComponent(tilesRemainingLabel)
-						.addComponent(drawTileButton)
-						.addComponent(confirmMovesButton)
-						.addComponent(revertMovesButton)
-						.addComponent(abandonGameButton)
-						.addGap(10,10,10)
-					).addComponent(rackScrollPane)
+				.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 800, 800, 800)
+				.addGroup(layout.createSequentialGroup()
+				.addComponent(tilesRemainingLabel)
+				.addComponent(drawTileButton)
+				.addComponent(confirmMovesButton)
+				.addComponent(revertMovesButton)
+				.addComponent(abandonGameButton)
+				.addGap(10,10,10)
+				).addComponent(rackScrollPane)
 				);
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
-					.addComponent(stageScrollPane,340,340,340)
-					.addGap(10,10,10)
-					.addGroup(layout.createParallelGroup()
-						.addComponent(tilesRemainingLabel,GroupLayout.Alignment.CENTER)
-						.addComponent(drawTileButton)
-						.addComponent(confirmMovesButton)
-						.addComponent(revertMovesButton)
-						.addComponent(abandonGameButton))
-					.addGap(10,10,10)
-					.addComponent(rackScrollPane)
-					.addGap(10,10,10)
+				.addComponent(stageScrollPane,340,340,340)
+				.addGap(10,10,10)
+				.addGroup(layout.createParallelGroup()
+				.addComponent(tilesRemainingLabel,GroupLayout.Alignment.CENTER)
+				.addComponent(drawTileButton)
+				.addComponent(confirmMovesButton)
+				.addComponent(revertMovesButton)
+				.addComponent(abandonGameButton))
+				.addGap(10,10,10)
+				.addComponent(rackScrollPane)
+				.addGap(10,10,10)
 				);
 		
-
+		
 	}
 	
 	private JButton drawTileButton;
@@ -183,6 +195,7 @@ public class GameRoomFrame extends JInternalFrame {
 	private JButton revertMovesButton;
 	private JButton abandonGameButton;
 	private JList<ImageIcon> stage;
+	private JLayeredPane stageLayeredPane;
 	private DefaultListModel stageModel;
 	private DefaultListModel playerRackModel;
 }
