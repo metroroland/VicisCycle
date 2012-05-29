@@ -18,6 +18,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
 import javax.swing.*;
+import viciscycle.model.tile.*;
 
 
 /**
@@ -35,8 +36,7 @@ public class GameRoomFrame extends JInternalFrame {
 		gp.setSize(1060, 600);
 		
 		/**control code**/
-		
-		
+
 		stageModel = new DefaultListModel();
 		playerRackModel = new DefaultListModel();
 		
@@ -65,76 +65,9 @@ public class GameRoomFrame extends JInternalFrame {
 		}
 		
 		
-		
-		stage = new JList<>();
-		stage.setModel(stageModel);
-		stage.setVisibleRowCount(0);
-		stage.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-		stage.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		stage.setDragEnabled(true);
-		
-		stage.setDropMode(DropMode.INSERT);
-		stage.setTransferHandler(new TileTransferHandler());
-		
-		stage.setFixedCellHeight(94);
-		stage.setFixedCellWidth(90);
-		stage.addMouseListener(new MouseListener() {
-			
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mousePressed(MouseEvent e) {
-				switch (e.getButton()){
-					case MouseEvent.BUTTON1:
-						break;
-					case MouseEvent.BUTTON3:
-						try{
-							Tile t = (Tile) stageModel.getElementAt(stage.locationToIndex(e.getPoint()));
-							t.rotateTile();
-							stage.repaint();
-						}catch(Exception ex){
-							
-						}
-						break;
-				}
-			}
-			
-			@Override
-			public void mouseReleased(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mouseEntered(MouseEvent e) {
-				
-			}
-			
-			@Override
-			public void mouseExited(MouseEvent e) {
-				
-			}
-		});
-		
-		//highlight layer need to use Jcomponent
-		JPanel highlightPanel = new JPanel();
-		HighlightRect h1 = new HighlightRect(1, 1);
-		highlightPanel.add(h1);
-		
-		JList<Tile> rack = new JList<Tile>();
-		rack.setModel(playerRackModel);
-		rack.setVisibleRowCount(0);
-		rack.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-		rack.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-		rack.setDragEnabled(true);
-		
-		rack.setDropMode(DropMode.INSERT);
-		rack.setTransferHandler(new TileTransferHandler());
-		
-		//stage.setSize(816, 340);
-		//rack.setSize(1016,180);
+		TileJList stage = new TileJList(stageModel);
+		TileJList rack = new TileJList(playerRackModel);
+	
 		JScrollPane rackScrollPane = new JScrollPane(rack);
 		stageLayeredPane = new JLayeredPane();
 		stageLayeredPane.setLayout(new GridLayout(1,1));
@@ -194,8 +127,10 @@ public class GameRoomFrame extends JInternalFrame {
 	private JButton confirmMovesButton;
 	private JButton revertMovesButton;
 	private JButton abandonGameButton;
+
 	private JList<ImageIcon> stage;
 	private JLayeredPane stageLayeredPane;
+
 	private DefaultListModel stageModel;
 	private DefaultListModel playerRackModel;
 }

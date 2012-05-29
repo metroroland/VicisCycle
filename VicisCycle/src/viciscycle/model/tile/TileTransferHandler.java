@@ -22,7 +22,7 @@ import javax.swing.TransferHandler;
  * @author roland
  */
 public class TileTransferHandler extends TransferHandler {
-	
+	private int[] selectedIs;
 
    // Support for drag
   DataFlavor dataFlavor = new DataFlavor(Tile.class,Tile.class.getSimpleName());
@@ -38,6 +38,7 @@ public class TileTransferHandler extends TransferHandler {
 	  
 	
 	  int[] selectedIndices = list.getSelectedIndices();
+	  this.selectedIs = selectedIndices;
 	  Tile[]icons = new Tile[selectedIndices.length];
           for (int i = selectedIndices.length-1; i >=0; i--) {
 			  icons[i] =(Tile) list.getModel().getElementAt(selectedIndices[i]);
@@ -54,12 +55,18 @@ public class TileTransferHandler extends TransferHandler {
       if (action == MOVE)
       {
          JList list = (JList) source;
-		   int[] selectedIndices = list.getSelectedIndices();
-		  Tile[]icons = new Tile[selectedIndices.length];
+		   int[] selectedIndices = selectedIs;
+		
 	      DefaultListModel model = (DefaultListModel) list.getModel();
 		  for (int i = selectedIndices.length-1; i >=0; i--) {        
+
 			   model.remove(selectedIndices[i]);
-          } 
+            try{
+			  Tile[] icons =(Tile[]) data.getTransferData(dataFlavor);
+		  }catch(Exception e){
+			  
+		  }
+		  }
          /*int index = list.getSelectedIndex();
          if (index < 0) return;
          DefaultListModel model = (DefaultListModel) list.getModel();
@@ -114,6 +121,7 @@ public class TileTransferHandler extends TransferHandler {
          }
          else if (flavors.contains(dataFlavor))
          {
+			 
 			 Tile[] Tile_array =(Tile[]) transferable.getTransferData(dataFlavor);
 			 for (int i = 0; i < Tile_array.length; i++) {
 				 tileList.add(Tile_array[i]);
