@@ -65,18 +65,18 @@ public class GameRoomFrame extends JInternalFrame {
 		}
 		
 		
-		TileJList stage = new TileJList(stageModel);
-		TileJList rack = new TileJList(playerRackModel);
+		stage = new TileJList(stageModel);
+		rack = new TileJList(playerRackModel);
 	
 		JScrollPane rackScrollPane = new JScrollPane(rack);
 		stageLayeredPane = new JLayeredPane();
 		stageLayeredPane.setLayout(new GridLayout(1,1));
 		stageLayeredPane.add(stage, new Integer(1));
-		stageLayeredPane.add(highlightPanel, new Integer(2));
+//		stageLayeredPane.add(highlightPanel, new Integer(2));
 		JScrollPane stageScrollPane= new JScrollPane(stageLayeredPane);
 		//rackScrollPane.setSize(1016, 180);
 		
-		JLabel tilesRemainingLabel = new JLabel( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : ");
+		tilesRemainingLabel = new JLabel( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : ");
 		
 		drawTileButton = new JButton( Resource.getString( "viciscycle.gui.drawTile" ) );
 		confirmMovesButton = new JButton( Resource.getString( "viciscycle.gui.confirmMoves" ) );
@@ -122,13 +122,23 @@ public class GameRoomFrame extends JInternalFrame {
 		
 		
 	}
+	public static void mainGame(){
+		stage.repaint();
+		rack.repaint();
+		DefaultListModel m =(DefaultListModel) rack.getModel();
+		
+		tilesRemainingLabel.setText( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : "+m.getSize());
+		
+	}
 	
 	private JButton drawTileButton;
 	private JButton confirmMovesButton;
 	private JButton revertMovesButton;
 	private JButton abandonGameButton;
+	private static JLabel tilesRemainingLabel;
 
-	private JList<ImageIcon> stage;
+	private static TileJList stage;
+	private static TileJList rack;
 	private JLayeredPane stageLayeredPane;
 
 	private DefaultListModel stageModel;

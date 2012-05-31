@@ -16,6 +16,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.TransferHandler;
+import viciscycle.gui.GameRoomFrame;
 
 /**
  *
@@ -60,13 +61,14 @@ public class TileTransferHandler extends TransferHandler {
 	      DefaultListModel model = (DefaultListModel) list.getModel();
 		  for (int i = selectedIndices.length-1; i >=0; i--) {        
 
-			   model.remove(selectedIndices[i]);
+			   model.remove(selectedIndices[i]+selectedIndices.length);
             try{
 			  Tile[] icons =(Tile[]) data.getTransferData(dataFlavor);
 		  }catch(Exception e){
 			  
 		  }
 		  }
+		  GameRoomFrame.mainGame();
          /*int index = list.getSelectedIndex();
          if (index < 0) return;
          DefaultListModel model = (DefaultListModel) list.getModel();
