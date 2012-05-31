@@ -4,6 +4,9 @@
  */
 package viciscycle.model.tile;
 
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.DefaultListModel;
@@ -71,4 +74,16 @@ public class TileJList extends JList {
 			}
 		});
 	}
+	/*@Override
+	public Dimension getPreferredSize() {
+ int maxX = 0;
+ int maxY = 0;
+ Component[] components = this.getComponents();
+ for(int i = 0; i < components.length; i++){
+   Rectangle bounds = components[i].getBounds();
+   maxX = Math.max(maxX, (int)bounds.getMaxX());
+   maxY = Math.max(maxY, (int)bounds.getMaxY());
+ }	
+return new Dimension(maxX,maxY);
+}*/
 }

@@ -4,6 +4,7 @@
  */
 package viciscycle.gui;
 
+import java.awt.*;
 import viciscycle.model.tile.Tile;
 import viciscycle.model.tile.TileSymbol;
 import viciscycle.model.tile.TileColor;
@@ -11,9 +12,6 @@ import viciscycle.model.tile.TileOrientation;
 import viciscycle.model.tile.TileBaseSet;
 import viciscycle.model.tile.TileTransferHandler;
 
-import java.awt.Font;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
@@ -36,7 +34,7 @@ public class GameRoomFrame extends JInternalFrame {
 		gp.setSize(1060, 600);
 		
 		/**control code**/
-
+		
 		stageModel = new DefaultListModel();
 		playerRackModel = new DefaultListModel();
 		
@@ -65,15 +63,33 @@ public class GameRoomFrame extends JInternalFrame {
 		}
 		
 		
+		
 		stage = new TileJList(stageModel);
 		rack = new TileJList(playerRackModel);
-	
-		JScrollPane rackScrollPane = new JScrollPane(rack);
+		
+		
+		//JPanel
+		JPanel highlightPanel = new JPanel();
+		HighlightRect hr = new HighlightRect(0, 1,2,1);
+		highlightPanel.add(hr);
+		
+		
+		
 		stageLayeredPane = new JLayeredPane();
-		stageLayeredPane.setLayout(new GridLayout(1,1));
-		stageLayeredPane.add(stage, new Integer(1));
-//		stageLayeredPane.add(highlightPanel, new Integer(2));
+		LayoutManager overlay = new OverlayLayout(stageLayeredPane);
+		stageLayeredPane.setLayout(overlay);
+		
+		//stageLayeredPane.setLayout(null/*new  BoxLayout(stageLayeredPane, BoxLayout.LINE_AXIS)*/);
+		stageLayeredPane.add(stage, new Integer(0));
+		stageLayeredPane.add(hr, new Integer(3));
+		
+		stage.setBounds(0, 0, 720, 340);
+		//hr.setBounds(0, 0, 800, 340);
+		//stage.setPreferredSize(new Dimension(800, 740));
+		JScrollPane rackScrollPane = new JScrollPane(rack);
 		JScrollPane stageScrollPane= new JScrollPane(stageLayeredPane);
+		//stageScrollPane.setMinimumSize(new Dimension(800,340));
+	//	stageScrollPane.setPreferredSize(new Dimension(800,340));
 		//rackScrollPane.setSize(1016, 180);
 		
 		tilesRemainingLabel = new JLabel( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : ");
@@ -94,8 +110,9 @@ public class GameRoomFrame extends JInternalFrame {
 		GroupLayout layout = new GroupLayout(getContentPane());
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
-				layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-				.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 800, 800, 800)
+				layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+				.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 742, 742, 742)
+				
 				.addGroup(layout.createSequentialGroup()
 				.addComponent(tilesRemainingLabel)
 				.addComponent(drawTileButton)
@@ -107,7 +124,8 @@ public class GameRoomFrame extends JInternalFrame {
 				);
 		layout.setVerticalGroup(
 				layout.createSequentialGroup()
-				.addComponent(stageScrollPane,340,340,340)
+				.addComponent(stageScrollPane, 340,340,340)
+				
 				.addGap(10,10,10)
 				.addGroup(layout.createParallelGroup()
 				.addComponent(tilesRemainingLabel,GroupLayout.Alignment.CENTER)
@@ -136,11 +154,11 @@ public class GameRoomFrame extends JInternalFrame {
 	private JButton revertMovesButton;
 	private JButton abandonGameButton;
 	private static JLabel tilesRemainingLabel;
-
+	
 	private static TileJList stage;
 	private static TileJList rack;
 	private JLayeredPane stageLayeredPane;
-
+	
 	private DefaultListModel stageModel;
 	private DefaultListModel playerRackModel;
 }
