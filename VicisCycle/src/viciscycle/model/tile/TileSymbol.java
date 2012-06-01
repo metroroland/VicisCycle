@@ -48,7 +48,7 @@ public enum TileSymbol {
 	}
 	
 	public final TileSymbol getSymbol(){
-		return symbol;
+		return ;
 	}
 	
 	public final void drawSymbolAndShapes( Graphics2D g) {

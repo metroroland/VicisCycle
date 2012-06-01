@@ -148,7 +148,23 @@ public class GameRoomFrame extends JInternalFrame {
 		tilesRemainingLabel.setText( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : "+m.getSize());
 		
 	}
-	
+	public static void highlightTile(){
+		DefaultListModel m = (DefaultListModel)stage.getModel();
+		Tile[] tileSeries=new Tile[7];
+		int patternLength = 0;
+		for (int i = 0; i < m.size(); i++) {
+			//for (int j = 0; j < 7; j++) {
+				patternLength = 0;
+				for (int k = 0; k < tileSeries.length-1; k++) {
+					if(tileSeries[k].getTilePrototype().getTileSymbol().getNextTileSymbol()
+							.equals(tileSeries[k].getTilePrototype().getTileSymbol().)
+				}
+				
+			//}
+			tileSeries[0] = tileSeries[1];
+			tileSeries[1] = tileSeries[2];
+		}
+	}
 	private JButton drawTileButton;
 	private JButton confirmMovesButton;
 	private JButton revertMovesButton;
