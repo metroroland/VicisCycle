@@ -49,7 +49,7 @@ public class GameRoomFrame extends JInternalFrame {
 		Tile[] dataIcons = {data,data2};
 		
 		
-		for(int i= 0; i<4;i++){
+		for(int i= 0; i<2;i++){
 			stageModel.addElement(dataIcons[1]);
 			stageModel.addElement(dataIcons[0]);
 			stageModel.addElement(data3);
@@ -137,7 +137,7 @@ public class GameRoomFrame extends JInternalFrame {
 				.addComponent(rackScrollPane)
 				.addGap(10,10,10)
 				);
-		
+				GameRoomFrame.mainGame();
 		
 	}
 	public static void mainGame(){

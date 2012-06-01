@@ -47,6 +47,10 @@ public enum TileSymbol {
 		return nextTileSymbols.get( this );
 	}
 	
+	public final TileSymbol getSymbol(){
+		return symbol;
+	}
+	
 	public final void drawSymbolAndShapes( Graphics2D g) {
 		// draw the central symbol image
 			//draw shape

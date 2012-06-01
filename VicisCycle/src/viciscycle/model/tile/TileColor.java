@@ -20,7 +20,8 @@ public enum TileColor {
 	GREEN( Color.green ),
 	BLUE( Color.blue ),
 	INDIGO( new Color( 75, 0, 130 ) ),
-	VIOLET( new Color( 128, 0,128 ) );
+	VIOLET( new Color( 128, 0,128 ) ),
+	WILDCARD(new Color (130,255,239));
 	
 	private TileColor( Color tileColor ) {
 		color = tileColor;
