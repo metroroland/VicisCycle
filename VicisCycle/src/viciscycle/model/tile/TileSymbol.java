@@ -25,12 +25,13 @@ public enum TileSymbol {
 	MERCURY( "Mercury.gif", TileShape.SQUARE ),
 	JUPITER( "Jupiter.gif", TileShape.PENTAGON ),
 	VENUS( "Venus.gif", TileShape.HEXAGON ),
-	SATURN( "Saturn.gif", TileShape.OCTAGON );
+	SATURN( "Saturn.gif", TileShape.OCTAGON ),
+	EARTH("EARTH.gif",TileShape.OCTAGON);
 	
 	private TileSymbol( String imageFileName, TileShape tileShape ) {
 		Image image = null;
 		try {
-			image = ImageIO.read( new File( imageFileName ) );;
+			image = ImageIO.read( new File( imageFileName ) );
 		}
 		catch (IOException e) {
 			//e.printStackTrace();
@@ -48,7 +49,7 @@ public enum TileSymbol {
 	}
 	
 	public final TileSymbol getSymbol(){
-		return ;
+		return this;
 	}
 	
 	public final void drawSymbolAndShapes( Graphics2D g) {

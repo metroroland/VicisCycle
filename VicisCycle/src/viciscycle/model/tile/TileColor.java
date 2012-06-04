@@ -13,7 +13,7 @@ import java.awt.geom.Rectangle2D;
  * @author Kineslight
  */
 public enum TileColor {
-
+	
 	RED( Color.red ),
 	ORANGE( Color.orange ),
 	YELLOW( Color.yellow ),
@@ -39,7 +39,7 @@ public enum TileColor {
 		// paint the center and margin colors
 		shape2 = new Rectangle2D.Double(0, 0, 90, 70);
 		shape1 = new Rectangle2D.Double(0, 70, 90, 20);
-	
+		
 		g.setPaint(new GradientPaint(0,0,Color.WHITE, 34, 34, this.color));
 		g.fill(shape2);
 		//Color colors2[] = {Color.ORANGE,Color.WHITE};
@@ -60,13 +60,23 @@ public enum TileColor {
 		// precalculate tile color order mapping
 		previousTileColors = new EnumMap<TileColor, TileColor>( TileColor.class );
 		for ( TileColor tileColor : TileColor.values() ) {
-			final TileColor previousTileColor = TileColor.values()[ ( tileColor.ordinal() + TileColor.values().length - 1 ) % TileColor.values().length ];
+			final TileColor previousTileColor;
+			if(tileColor==TileColor.values()[TileColor.values().length-1])	{
+				previousTileColor = tileColor;
+			}else{
+				previousTileColor = TileColor.values()[ ( tileColor.ordinal() + TileColor.values().length - 1 ) %( TileColor.values().length-1) ];
+			}
 			previousTileColors.put( tileColor, previousTileColor );
 		}
-
+		
 		nextTileColors = new EnumMap<TileColor, TileColor>( TileColor.class );
 		for ( TileColor tileColor : TileColor.values() ) {
-			final TileColor nextTileColor = TileColor.values()[ ( tileColor.ordinal() + 1 ) % TileColor.values().length ];
+			final TileColor nextTileColor;
+			if(tileColor==TileColor.values()[TileColor.values().length-1])	{
+				nextTileColor = tileColor;
+			}else{
+				nextTileColor = TileColor.values()[ ( tileColor.ordinal() + 1 ) %( TileColor.values().length-1) ];
+			}
 			nextTileColors.put( tileColor, nextTileColor );
 		}
 	}

@@ -155,10 +155,10 @@ public class GameRoomFrame extends JInternalFrame {
 		for (int i = 0; i < m.size(); i++) {
 			//for (int j = 0; j < 7; j++) {
 				patternLength = 0;
-				for (int k = 0; k < tileSeries.length-1; k++) {
+				/*for (int k = 0; k < tileSeries.length-1; k++) {
 					if(tileSeries[k].getTilePrototype().getTileSymbol().getNextTileSymbol()
 							.equals(tileSeries[k].getTilePrototype().getTileSymbol().)
-				}
+				}*/
 				
 			//}
 			tileSeries[0] = tileSeries[1];
