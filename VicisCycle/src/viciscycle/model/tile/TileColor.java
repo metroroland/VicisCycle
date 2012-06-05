@@ -21,7 +21,8 @@ public enum TileColor {
 	BLUE( Color.blue ),
 	INDIGO( new Color( 75, 0, 130 ) ),
 	VIOLET( new Color( 128, 0,128 ) ),
-	WILDCARD(new Color (130,255,239));
+	WILDCARD(new Color (130,255,239)),
+	EMPTY(new Color(255,255,255));
 	
 	private TileColor( Color tileColor ) {
 		color = tileColor;
@@ -52,6 +53,7 @@ public enum TileColor {
 	private final Color color;
 	private Shape shape2;
 	private Shape shape1;
+	private final static int reservedSymbol = 2;
 	
 	private static final EnumMap<TileColor, TileColor> previousTileColors;
 	private static final EnumMap<TileColor, TileColor> nextTileColors;
@@ -61,10 +63,11 @@ public enum TileColor {
 		previousTileColors = new EnumMap<TileColor, TileColor>( TileColor.class );
 		for ( TileColor tileColor : TileColor.values() ) {
 			final TileColor previousTileColor;
-			if(tileColor==TileColor.values()[TileColor.values().length-1])	{
+			if(tileColor==TileColor.values()[TileColor.values().length-1]||
+					tileColor == TileColor.values()[TileColor.values().length-2])	{
 				previousTileColor = tileColor;
 			}else{
-				previousTileColor = TileColor.values()[ ( tileColor.ordinal() + TileColor.values().length - 1 ) %( TileColor.values().length-1) ];
+				previousTileColor = TileColor.values()[ ( tileColor.ordinal() + TileColor.values().length - 1 ) %( TileColor.values().length-reservedSymbol) ];
 			}
 			previousTileColors.put( tileColor, previousTileColor );
 		}
@@ -72,10 +75,11 @@ public enum TileColor {
 		nextTileColors = new EnumMap<TileColor, TileColor>( TileColor.class );
 		for ( TileColor tileColor : TileColor.values() ) {
 			final TileColor nextTileColor;
-			if(tileColor==TileColor.values()[TileColor.values().length-1])	{
+			if(tileColor==TileColor.values()[TileColor.values().length-1]||
+					tileColor == TileColor.values()[TileColor.values().length-2])	{
 				nextTileColor = tileColor;
 			}else{
-				nextTileColor = TileColor.values()[ ( tileColor.ordinal() + 1 ) %( TileColor.values().length-1) ];
+				nextTileColor = TileColor.values()[ ( tileColor.ordinal() + 1 ) %( TileColor.values().length-reservedSymbol) ];
 			}
 			nextTileColors.put( tileColor, nextTileColor );
 		}

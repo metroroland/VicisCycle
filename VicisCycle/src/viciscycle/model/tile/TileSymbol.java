@@ -26,7 +26,8 @@ public enum TileSymbol {
 	JUPITER( "Jupiter.gif", TileShape.PENTAGON ),
 	VENUS( "Venus.gif", TileShape.HEXAGON ),
 	SATURN( "Saturn.gif", TileShape.OCTAGON ),
-	EARTH("EARTH.gif",TileShape.OCTAGON);
+	EARTH("EARTH.gif",TileShape.EMPTY),
+	EMPTY("empty.gif",TileShape.EMPTY);
 	
 	private TileSymbol( String imageFileName, TileShape tileShape ) {
 		Image image = null;
@@ -69,6 +70,7 @@ public enum TileSymbol {
 	
 	private final Image symbol;
 	private final TileShape shape;
+	private final static int reservedSymbol = 2;
 	
 	private enum TileShape {
 
@@ -183,6 +185,11 @@ public enum TileSymbol {
 				r.lineTo(p-10+b, 35);
 				g.draw(r);
 			}
+		},
+		EMPTY {
+			@Override public void drawShape( Graphics2D g, TileMargin margin) {
+			
+			}
 		};
 		
 		public abstract void drawShape( Graphics2D g, TileMargin margin);
@@ -199,14 +206,27 @@ public enum TileSymbol {
 	static {
 		// precalculate tile symbol order mapping
 		previousTileSymbols = new EnumMap<TileSymbol, TileSymbol>( TileSymbol.class );
+		
 		for ( TileSymbol tileSymbol : TileSymbol.values() ) {
-			final TileSymbol previousTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + TileSymbol.values().length - 1 ) % TileSymbol.values().length ];
+			final TileSymbol previousTileSymbol;
+			if(tileSymbol == TileSymbol.values()[TileSymbol.values().length-1]||
+					tileSymbol == TileSymbol.values()[TileSymbol.values().length-2]){
+				previousTileSymbol = tileSymbol;
+			}else{
+				previousTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + TileSymbol.values().length - 1 ) % (TileSymbol.values().length-reservedSymbol) ];
+			}
 			previousTileSymbols.put( tileSymbol, previousTileSymbol );
 		}
 		
 		nextTileSymbols = new EnumMap<TileSymbol, TileSymbol>( TileSymbol.class );
 		for ( TileSymbol tileSymbol : TileSymbol.values() ) {
-			final TileSymbol nextTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + 1 ) % TileSymbol.values().length ];
+			final TileSymbol nextTileSymbol ;
+			if(tileSymbol == TileSymbol.values()[TileSymbol.values().length-1]||
+					tileSymbol == TileSymbol.values()[TileSymbol.values().length-2]){
+				nextTileSymbol = tileSymbol;
+			}else{
+				nextTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + 1 ) % (TileSymbol.values().length-reservedSymbol) ];
+			}
 			nextTileSymbols.put( tileSymbol, nextTileSymbol );
 		}
 	}

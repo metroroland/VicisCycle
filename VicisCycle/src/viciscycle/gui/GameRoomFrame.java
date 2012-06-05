@@ -45,6 +45,7 @@ public class GameRoomFrame extends JInternalFrame {
 		Tile data5 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.JUPITER, TileColor.BLUE), TileOrientation.UPRIGHT );
 		Tile data6 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MARS, TileColor.INDIGO), TileOrientation.UPRIGHT );
 		Tile data7 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.VENUS, TileColor.VIOLET), TileOrientation.UPRIGHT );
+		Tile data8 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.EARTH, TileColor.WILDCARD), TileOrientation.UPRIGHT );
 		
 		Tile[] dataIcons = {data,data2};
 		
@@ -58,6 +59,9 @@ public class GameRoomFrame extends JInternalFrame {
 			stageModel.addElement(data5);
 			stageModel.addElement(data6);
 			stageModel.addElement(data7);
+			stageModel.addElement(data8);
+			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
+			
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT ));
 			playerRackModel.addElement(dataIcons[1]);
 		}
