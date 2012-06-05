@@ -49,7 +49,11 @@ public class TileJList extends JList {
 					case MouseEvent.BUTTON3:
 						try{
 							Tile t = (Tile) tileList.getElementAt(locationToIndex(e.getPoint()));
-							t.rotateTile();
+							if(t.getTilePrototype().getTileSymbol()!=TileSymbol.EMPTY||
+									t.getTilePrototype().getTileSymbol()!=TileSymbol.EARTH){
+								t.rotateTile();								
+							}
+
 							repaint();
 						}catch(Exception ex){
 							

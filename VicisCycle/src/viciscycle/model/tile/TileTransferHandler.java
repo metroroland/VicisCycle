@@ -24,7 +24,10 @@ import viciscycle.gui.GameRoomFrame;
  */
 public class TileTransferHandler extends TransferHandler {
 	private int[] selectedIs;
-	
+	private static JComponent dragSource;
+	private static JList dropTarget;
+	private static int sourceIndex;
+	private static int targetIndex;
 	// Support for drag
 	DataFlavor dataFlavor = new DataFlavor(Tile.class,Tile.class.getSimpleName());
 	
@@ -96,10 +99,7 @@ public class TileTransferHandler extends TransferHandler {
 			return a;
 		}
 	}
-	private static JComponent dragSource;
-	private static JList dropTarget;
-	private static int sourceIndex;
-	private static int targetIndex;
+
 	public boolean importData(TransferHandler.TransferSupport support)
 	{
 		JList list = (JList) support.getComponent();
