@@ -70,8 +70,17 @@ public class Tile implements Icon {
 		orientation = orientation.getNextTileOrientation();
 		
 	}
-	
+	public void setPosition(TilePosition tp){
+		this.position = tp;
+	}
+	public TilePosition getPosition(){
+		return this.position;
+	}
+	public enum TilePosition{
+		FRONT,IN_BETWEEN,BACK
+	}
 	private final TilePrototype prototype;
 	private TileOrientation orientation;
 	private Image tileImage;
+	private TilePosition position;
 }

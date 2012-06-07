@@ -61,6 +61,9 @@ public class GameRoomFrame extends JInternalFrame {
 			stageModel.addElement(data7);
 			stageModel.addElement(data8);
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
+			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
+			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
+			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
 			
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT ));
 			playerRackModel.addElement(dataIcons[1]);
@@ -93,7 +96,7 @@ public class GameRoomFrame extends JInternalFrame {
 		JScrollPane rackScrollPane = new JScrollPane(rack);
 		JScrollPane stageScrollPane= new JScrollPane(stageLayeredPane);
 		//stageScrollPane.setMinimumSize(new Dimension(800,340));
-	//	stageScrollPane.setPreferredSize(new Dimension(800,340));
+		//	stageScrollPane.setPreferredSize(new Dimension(800,340));
 		//rackScrollPane.setSize(1016, 180);
 		
 		tilesRemainingLabel = new JLabel( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : ");
@@ -141,16 +144,49 @@ public class GameRoomFrame extends JInternalFrame {
 				.addComponent(rackScrollPane)
 				.addGap(10,10,10)
 				);
-				GameRoomFrame.mainGame();
+		GameRoomFrame.mainGame();
 		
 	}
 	public static void mainGame(){
+		
+		DefaultListModel rackModel =(DefaultListModel) rack.getModel();
+		DefaultListModel stageModel =(DefaultListModel) stage.getModel();
+		tilesRemainingLabel.setText( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : "+rackModel.getSize());
+		Tile t;
+		/*for (int i = 0; i < stageModel.getSize(); i++) {
+			t = (Tile)stageModel.getElementAt(i);
+			if(i %7== 6){
+				continue;
+			}else{
+				System.out.println("get normal"+i);
+				if(t.getTilePrototype().getTileSymbol()==TileSymbol.EMPTY){
+					int j;
+					if(i+6>stageModel.getSize()){
+						j=stageModel.getSize()-1;
+					}else{
+						j=(i/7)+6;
+					}
+					stageModel.add(j, t);
+					stageModel.remove(i);
+					System.out.println("get get normal");
+				}
+			}
+			
+		}*/
+		
+		for (int i = 0; i < stageModel.getSize(); i++) {
+			t = (Tile)stageModel.getElementAt(i);
+			if(i % 7 == 0){
+				t.setPosition(Tile.TilePosition.FRONT);
+			}else if(i%7==6){
+				t.setPosition(Tile.TilePosition.BACK);
+			}else{
+				t.setPosition(Tile.TilePosition.IN_BETWEEN);
+			}
+			
+		}
 		stage.repaint();
 		rack.repaint();
-		DefaultListModel m =(DefaultListModel) rack.getModel();
-		
-		tilesRemainingLabel.setText( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : "+m.getSize());
-		
 	}
 	public static void highlightTile(){
 		DefaultListModel m = (DefaultListModel)stage.getModel();
@@ -158,12 +194,12 @@ public class GameRoomFrame extends JInternalFrame {
 		int patternLength = 0;
 		for (int i = 0; i < m.size(); i++) {
 			//for (int j = 0; j < 7; j++) {
-				patternLength = 0;
-				/*for (int k = 0; k < tileSeries.length-1; k++) {
-					if(tileSeries[k].getTilePrototype().getTileSymbol().getNextTileSymbol()
-							.equals(tileSeries[k].getTilePrototype().getTileSymbol().)
-				}*/
-				
+			patternLength = 0;
+			/*for (int k = 0; k < tileSeries.length-1; k++) {
+			 * if(tileSeries[k].getTilePrototype().getTileSymbol().getNextTileSymbol()
+			 * .equals(tileSeries[k].getTilePrototype().getTileSymbol().)
+			 * }*/
+			
 			//}
 			tileSeries[0] = tileSeries[1];
 			tileSeries[1] = tileSeries[2];
