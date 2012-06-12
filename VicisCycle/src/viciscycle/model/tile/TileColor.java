@@ -35,7 +35,9 @@ public enum TileColor {
 	public final TileColor getNextTileColor() {
 		return nextTileColors.get( this );
 	}
-	
+	public final TileColor getTileColor(){
+		return this;
+	}
 	public final void paintColors( Graphics2D g) {
 		// paint the center and margin colors
 		shape2 = new Rectangle2D.Double(0, 0, 90, 70);

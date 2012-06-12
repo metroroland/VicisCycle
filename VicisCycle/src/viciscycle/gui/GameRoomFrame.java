@@ -76,21 +76,16 @@ public class GameRoomFrame extends JInternalFrame {
 		
 		
 		//JPanel
-		JPanel highlightPanel = new JPanel();
-		HighlightRect hr = new HighlightRect(0, 1,2,1);
-		highlightPanel.add(hr);
+		highlightPanel = new JPanel();
 		
-		
-		
-		stageLayeredPane = new JLayeredPane();
+			stageLayeredPane = new JLayeredPane();
 		LayoutManager overlay = new OverlayLayout(stageLayeredPane);
 		stageLayeredPane.setLayout(overlay);
-		
 		//stageLayeredPane.setLayout(null/*new  BoxLayout(stageLayeredPane, BoxLayout.LINE_AXIS)*/);
 		stageLayeredPane.add(stage, new Integer(0));
-		stageLayeredPane.add(hr, new Integer(3));
+		//stageLayeredPane.add(hr, new Integer(3));
 		
-		stage.setBounds(0, 0, 720, 340);
+		stage.setBounds(0, 0, 630, 340);
 		//hr.setBounds(0, 0, 800, 340);
 		//stage.setPreferredSize(new Dimension(800, 740));
 		JScrollPane rackScrollPane = new JScrollPane(rack);
@@ -118,7 +113,7 @@ public class GameRoomFrame extends JInternalFrame {
 		getContentPane().setLayout(layout);
 		layout.setHorizontalGroup(
 				layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-				.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 742, 742, 742)
+				.addComponent(stageScrollPane,GroupLayout.Alignment.LEADING, 652, 652, 652)
 				
 				.addGroup(layout.createSequentialGroup()
 				.addComponent(tilesRemainingLabel)
@@ -153,22 +148,25 @@ public class GameRoomFrame extends JInternalFrame {
 		DefaultListModel stageModel =(DefaultListModel) stage.getModel();
 		tilesRemainingLabel.setText( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : "+rackModel.getSize());
 		Tile t;
+		//auto -rearrange empty tile
 		/*for (int i = 0; i < stageModel.getSize(); i++) {
 			t = (Tile)stageModel.getElementAt(i);
-			if(i %7== 6){
+			if(i %7== 0 && i > 0){
 				continue;
 			}else{
-				System.out.println("get normal"+i);
+				
 				if(t.getTilePrototype().getTileSymbol()==TileSymbol.EMPTY){
 					int j;
 					if(i+6>stageModel.getSize()){
 						j=stageModel.getSize()-1;
 					}else{
-						j=(i/7)+6;
+						j=((i/7)+1)*7-1;
 					}
+					
 					stageModel.add(j, t);
 					stageModel.remove(i);
-					System.out.println("get get normal");
+					//stageModel.removeElementAt(i);
+					System.out.println("get get normal i:"+i+",j:"+j);
 				}
 			}
 			
@@ -185,24 +183,63 @@ public class GameRoomFrame extends JInternalFrame {
 			}
 			
 		}
+		highlightTile();
 		stage.repaint();
 		rack.repaint();
 	}
 	public static void highlightTile(){
 		DefaultListModel m = (DefaultListModel)stage.getModel();
 		Tile[] tileSeries=new Tile[7];
-		int patternLength = 0;
-		for (int i = 0; i < m.size(); i++) {
+		int patternLength = 0,colorPatternLength = 0;
+		
+		stageLayeredPane.removeAll();
+		LayoutManager overlay = new OverlayLayout(stageLayeredPane);
+		stageLayeredPane.setLayout(overlay);
+		
+		stageLayeredPane.add(stage, new Integer(0));
+		
+
+		for (int i = 0; i < m.size()-1; i++) {
 			//for (int j = 0; j < 7; j++) {
-			patternLength = 0;
-			/*for (int k = 0; k < tileSeries.length-1; k++) {
-			 * if(tileSeries[k].getTilePrototype().getTileSymbol().getNextTileSymbol()
-			 * .equals(tileSeries[k].getTilePrototype().getTileSymbol().)
-			 * }*/
+			tileSeries[0] = (Tile) m.getElementAt(i);
+			tileSeries[1] = (Tile) m.getElementAt(i+1);
+			if (i % 7 == 0) {
+				patternLength = 0;
+				colorPatternLength = 0;
+			}
 			
-			//}
-			tileSeries[0] = tileSeries[1];
-			tileSeries[1] = tileSeries[2];
+			if(tileSeries[0].getTilePrototype().getTileSymbol().getNextTileSymbol()
+					.equals(tileSeries[1].getTilePrototype().getTileSymbol())){
+				patternLength++;
+			}else{
+				if (patternLength >= 3) {
+					//output rect
+					HighlightRect hr = new HighlightRect(i%7,i/7 ,patternLength,1);
+					highlightPanel.add(hr);
+					
+					stageLayeredPane.add(hr, new Integer(3));
+					patternLength = 0;
+				}
+			}
+			if(tileSeries[0].getTilePrototype().getTileColor().getNextTileColor()
+					.equals(tileSeries[1].getTilePrototype().getTileColor())){
+				colorPatternLength++;
+			}else{
+				if (colorPatternLength >= 3) {
+					//output rect
+					HighlightRect hr = new HighlightRect(i%7,i/7 ,colorPatternLength,1);
+					highlightPanel.add(hr);
+					
+					stageLayeredPane.add(hr, new Integer(3));
+					colorPatternLength = 0;
+				}
+			}
+			
+					
+		
+			stageLayeredPane.repaint();
+			
+			
 		}
 	}
 	private JButton drawTileButton;
@@ -211,9 +248,10 @@ public class GameRoomFrame extends JInternalFrame {
 	private JButton abandonGameButton;
 	private static JLabel tilesRemainingLabel;
 	
-	private static TileJList stage;
-	private static TileJList rack;
-	private JLayeredPane stageLayeredPane;
+	public static TileJList stage;
+	public static TileJList rack;
+	private static JLayeredPane stageLayeredPane;
+	private static JPanel highlightPanel;
 	
 	private DefaultListModel stageModel;
 	private DefaultListModel playerRackModel;

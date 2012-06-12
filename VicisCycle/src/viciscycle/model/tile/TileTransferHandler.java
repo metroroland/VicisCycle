@@ -69,6 +69,11 @@ public class TileTransferHandler extends TransferHandler {
 					
 				}else
 					model.remove(selectedIndices[i]);
+				if (dragSource.equals(GameRoomFrame.stage)&&!dragSource.equals(dropTarget) ) {
+					Tile t = new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT );
+					model.add(selectedIndices[i], t);
+				}
+					
 				try{
 					Tile[] icons =(Tile[]) data.getTransferData(dataFlavor);
 				}catch(Exception e){
@@ -113,23 +118,23 @@ public class TileTransferHandler extends TransferHandler {
 		
 		try
 		{
-			if (flavors.contains(DataFlavor.javaFileListFlavor))
-			{
-				List<File> fileList = (List<File>) transferable
-						.getTransferData(DataFlavor.javaFileListFlavor);
-				for (File f : fileList)
-				{
-					/* try
-					 * {
-					 * images.add(ImageIO.read(f));
-					 * }
-					 * catch (IOException ex)
-					 * {
-					 * // couldn't read image--skip
-					 * }	*/
-				}
-			}
-			else if (flavors.contains(dataFlavor))
+//			if (flavors.contains(DataFlavor.javaFileListFlavor))
+//			{
+//				List<File> fileList = (List<File>) transferable
+//						.getTransferData(DataFlavor.javaFileListFlavor);
+//				for (File f : fileList)
+//				{
+//					/* try
+//					 * {
+//					 * images.add(ImageIO.read(f));
+//					 * }
+//					 * catch (IOException ex)
+//					 * {
+//					 * // couldn't read image--skip
+//					 * }	*/
+//				}
+//			}
+//			else if (flavors.contains(dataFlavor))
 			{
 				
 				Tile[] Tile_array =(Tile[]) transferable.getTransferData(dataFlavor);
@@ -155,6 +160,12 @@ public class TileTransferHandler extends TransferHandler {
 			}
 			for (Tile image : tileList)
 			{
+				if (dropTarget.equals(GameRoomFrame.stage)&&!dragSource.equals(dropTarget)) {
+					Tile t = (Tile)model.getElementAt(index);
+					if (t.getTilePrototype().getTileSymbol()==TileSymbol.EMPTY) {
+						model.remove(index);
+					}
+				}
 				model.add(index, image);
 				index++;
 			}
