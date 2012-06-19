@@ -49,9 +49,7 @@ public class GameRoomFrame extends JInternalFrame {
 		
 		Tile[] dataIcons = {data,data2};
 		
-		
-		for(int i= 0; i<2;i++){
-			stageModel.addElement(dataIcons[1]);
+		stageModel.addElement(dataIcons[1]);
 			stageModel.addElement(dataIcons[0]);
 			stageModel.addElement(data3);
 			stageModel.addElement(data2);
@@ -60,13 +58,16 @@ public class GameRoomFrame extends JInternalFrame {
 			stageModel.addElement(data6);
 			stageModel.addElement(data7);
 			stageModel.addElement(data8);
+			playerRackModel.addElement(dataIcons[1]);
+		for(int i= 0; i<4;i++){
+			
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
 			
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT ));
-			playerRackModel.addElement(dataIcons[1]);
+			
 		}
 		
 		
@@ -151,7 +152,9 @@ public class GameRoomFrame extends JInternalFrame {
 		//auto -rearrange empty tile
 		/*for (int i = 0; i < stageModel.getSize(); i++) {
 			t = (Tile)stageModel.getElementAt(i);
-			if(i %7== 0 && i > 0){
+		
+			
+			if((i %7)== 0 && i > 0){			
 				continue;
 			}else{
 				
@@ -162,9 +165,9 @@ public class GameRoomFrame extends JInternalFrame {
 					}else{
 						j=((i/7)+1)*7-1;
 					}
-					
-					stageModel.add(j, t);
 					stageModel.remove(i);
+					stageModel.add(j, t);
+					
 					//stageModel.removeElementAt(i);
 					System.out.println("get get normal i:"+i+",j:"+j);
 				}
@@ -212,9 +215,9 @@ public class GameRoomFrame extends JInternalFrame {
 					.equals(tileSeries[1].getTilePrototype().getTileSymbol())){
 				patternLength++;
 			}else{
-				if (patternLength >= 3) {
+				if (patternLength >= 2) {
 					//output rect
-					HighlightRect hr = new HighlightRect(i%7,i/7 ,patternLength,1);
+					HighlightRect hr = new HighlightRect(i%7-patternLength,i/7 ,patternLength+1,1);
 					highlightPanel.add(hr);
 					
 					stageLayeredPane.add(hr, new Integer(3));
@@ -225,9 +228,9 @@ public class GameRoomFrame extends JInternalFrame {
 					.equals(tileSeries[1].getTilePrototype().getTileColor())){
 				colorPatternLength++;
 			}else{
-				if (colorPatternLength >= 3) {
+				if (colorPatternLength >= 2) {
 					//output rect
-					HighlightRect hr = new HighlightRect(i%7,i/7 ,colorPatternLength,1);
+					HighlightRect hr = new HighlightRect(i%7-colorPatternLength ,i/7,colorPatternLength+1,1);
 					highlightPanel.add(hr);
 					
 					stageLayeredPane.add(hr, new Integer(3));

@@ -66,7 +66,7 @@ public enum TileColor {
 		for ( TileColor tileColor : TileColor.values() ) {
 			final TileColor previousTileColor;
 			if(tileColor==TileColor.values()[TileColor.values().length-1]||
-					tileColor == TileColor.values()[TileColor.values().length-2])	{
+					tileColor == TileColor.values()[TileColor.values().length-reservedSymbol])	{
 				previousTileColor = tileColor;
 			}else{
 				previousTileColor = TileColor.values()[ ( tileColor.ordinal() + TileColor.values().length - 1 ) %( TileColor.values().length-reservedSymbol) ];
@@ -78,7 +78,7 @@ public enum TileColor {
 		for ( TileColor tileColor : TileColor.values() ) {
 			final TileColor nextTileColor;
 			if(tileColor==TileColor.values()[TileColor.values().length-1]||
-					tileColor == TileColor.values()[TileColor.values().length-2])	{
+					tileColor == TileColor.values()[TileColor.values().length-reservedSymbol])	{
 				nextTileColor = tileColor;
 			}else{
 				nextTileColor = TileColor.values()[ ( tileColor.ordinal() + 1 ) %( TileColor.values().length-reservedSymbol) ];
