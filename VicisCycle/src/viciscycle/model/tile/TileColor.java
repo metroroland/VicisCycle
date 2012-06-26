@@ -55,7 +55,7 @@ public enum TileColor {
 	private final Color color;
 	private Shape shape2;
 	private Shape shape1;
-	private final static int reservedSymbol = 2;
+	public final static int ReservedSymbol = 2;
 	
 	private static final EnumMap<TileColor, TileColor> previousTileColors;
 	private static final EnumMap<TileColor, TileColor> nextTileColors;
@@ -66,10 +66,10 @@ public enum TileColor {
 		for ( TileColor tileColor : TileColor.values() ) {
 			final TileColor previousTileColor;
 			if(tileColor==TileColor.values()[TileColor.values().length-1]||
-					tileColor == TileColor.values()[TileColor.values().length-reservedSymbol])	{
+					tileColor == TileColor.values()[TileColor.values().length-ReservedSymbol])	{
 				previousTileColor = tileColor;
 			}else{
-				previousTileColor = TileColor.values()[ ( tileColor.ordinal() + TileColor.values().length - 1 ) %( TileColor.values().length-reservedSymbol) ];
+				previousTileColor = TileColor.values()[ ( tileColor.ordinal() + TileColor.values().length - 1 ) %( TileColor.values().length-ReservedSymbol) ];
 			}
 			previousTileColors.put( tileColor, previousTileColor );
 		}
@@ -78,10 +78,10 @@ public enum TileColor {
 		for ( TileColor tileColor : TileColor.values() ) {
 			final TileColor nextTileColor;
 			if(tileColor==TileColor.values()[TileColor.values().length-1]||
-					tileColor == TileColor.values()[TileColor.values().length-reservedSymbol])	{
+					tileColor == TileColor.values()[TileColor.values().length-ReservedSymbol])	{
 				nextTileColor = tileColor;
 			}else{
-				nextTileColor = TileColor.values()[ ( tileColor.ordinal() + 1 ) %( TileColor.values().length-reservedSymbol) ];
+				nextTileColor = TileColor.values()[ ( tileColor.ordinal() + 1 ) %( TileColor.values().length-ReservedSymbol) ];
 			}
 			nextTileColors.put( tileColor, nextTileColor );
 		}

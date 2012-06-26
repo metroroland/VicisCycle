@@ -17,6 +17,8 @@ import javax.swing.JComponent;
 import javax.swing.JList;
 import javax.swing.TransferHandler;
 import viciscycle.gui.GameRoomFrame;
+import viciscycle.model.arena.Arena;
+import viciscycle.model.player.Player;
 
 /**
  *
@@ -63,12 +65,16 @@ public class TileTransferHandler extends TransferHandler {
 			int[] selectedIndices = selectedIs;
 			
 			DefaultListModel model = (DefaultListModel) list.getModel();
-			for (int i = selectedIndices.length-1; i >=0; i--) {
+			for (int i = selectedIndices.length-1; i >=0; i--) {//same field DnD
 				if(dragSource.equals(dropTarget) && sourceIndex>targetIndex ){
 					model.remove(selectedIndices[i]+selectedIndices.length);
 					
-				}else
+				}else{
 					model.remove(selectedIndices[i]);
+					Player p = GameRoomFrame.getPlayer();
+					Arena at = p.getRack(Arena.ArenaState.CURRENT);
+					at.removeTile(selectedIndices[i]);
+				}
 				if (dragSource.equals(GameRoomFrame.stage)&&!dragSource.equals(dropTarget) ) {
 					Tile t = new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT );
 					model.add(selectedIndices[i], t);

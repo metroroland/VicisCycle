@@ -70,7 +70,7 @@ public enum TileSymbol {
 	
 	private final Image symbol;
 	private final TileShape shape;
-	private final static int reservedSymbol = 2;
+	public final static int ReservedSymbol = 2;
 	
 	private enum TileShape {
 
@@ -199,7 +199,7 @@ public enum TileSymbol {
 		LEFT,
 		RIGHT;
 	}
-	
+
 	private static final EnumMap<TileSymbol, TileSymbol> previousTileSymbols;
 	private static final EnumMap<TileSymbol, TileSymbol> nextTileSymbols;
 	
@@ -210,10 +210,10 @@ public enum TileSymbol {
 		for ( TileSymbol tileSymbol : TileSymbol.values() ) {
 			final TileSymbol previousTileSymbol;
 			if(tileSymbol == TileSymbol.values()[TileSymbol.values().length-1]||
-					tileSymbol == TileSymbol.values()[TileSymbol.values().length-2]){
+					tileSymbol == TileSymbol.values()[TileSymbol.values().length-ReservedSymbol]){
 				previousTileSymbol = tileSymbol;
 			}else{
-				previousTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + TileSymbol.values().length - 1 ) % (TileSymbol.values().length-reservedSymbol) ];
+				previousTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + TileSymbol.values().length - 1 ) % (TileSymbol.values().length-ReservedSymbol) ];
 			}
 			previousTileSymbols.put( tileSymbol, previousTileSymbol );
 		}
@@ -222,10 +222,10 @@ public enum TileSymbol {
 		for ( TileSymbol tileSymbol : TileSymbol.values() ) {
 			final TileSymbol nextTileSymbol ;
 			if(tileSymbol == TileSymbol.values()[TileSymbol.values().length-1]||
-					tileSymbol == TileSymbol.values()[TileSymbol.values().length-2]){
+					tileSymbol == TileSymbol.values()[TileSymbol.values().length-ReservedSymbol]){
 				nextTileSymbol = tileSymbol;
 			}else{
-				nextTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + 1 ) % (TileSymbol.values().length-reservedSymbol) ];
+				nextTileSymbol = TileSymbol.values()[ ( tileSymbol.ordinal() + 1 ) % (TileSymbol.values().length-ReservedSymbol) ];
 			}
 			nextTileSymbols.put( tileSymbol, nextTileSymbol );
 		}

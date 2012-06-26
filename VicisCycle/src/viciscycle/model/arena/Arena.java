@@ -45,7 +45,18 @@ public final class Arena implements Cloneable {
 		type = arenaType;
 		arena = new ArrayList<Tile>( arenaType.getSize() );
 	}
-	
+	public void appendTile(Tile tl){
+		arena.add(tl);
+	}
+	public Tile getTile(int i){
+		return arena.get(i);
+	}
+	public Tile removeTile(int i){
+		return arena.remove(i);
+	}
+	public int getSize(){
+		return arena.size();
+	}
 	@Override
 	public Arena clone() {
 		

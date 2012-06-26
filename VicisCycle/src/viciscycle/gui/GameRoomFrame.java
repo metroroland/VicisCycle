@@ -5,6 +5,8 @@
 package viciscycle.gui;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import viciscycle.model.tile.Tile;
 import viciscycle.model.tile.TileSymbol;
 import viciscycle.model.tile.TileColor;
@@ -15,7 +17,10 @@ import viciscycle.model.tile.TileTransferHandler;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import javax.swing.*;
+import viciscycle.model.arena.Arena;
+import viciscycle.model.player.Player;
 import viciscycle.model.tile.*;
 
 
@@ -38,36 +43,30 @@ public class GameRoomFrame extends JInternalFrame {
 		stageModel = new DefaultListModel();
 		playerRackModel = new DefaultListModel();
 		
-		Tile data = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SUN, TileColor.RED ), TileOrientation.UPRIGHT );
-		Tile data2 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.ORANGE), TileOrientation.UPRIGHT );
-		Tile data3 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MOON, TileColor.YELLOW), TileOrientation.UPRIGHT );
-		Tile data4 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.SATURN, TileColor.GREEN),TileOrientation.UPRIGHT );
-		Tile data5 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.JUPITER, TileColor.BLUE), TileOrientation.UPRIGHT );
-		Tile data6 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.MARS, TileColor.INDIGO), TileOrientation.UPRIGHT );
-		Tile data7 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.VENUS, TileColor.VIOLET), TileOrientation.UPRIGHT );
-		Tile data8 = new Tile( TileBaseSet.getTilePrototype( TileSymbol.EARTH, TileColor.WILDCARD), TileOrientation.UPRIGHT );
 		
-		Tile[] dataIcons = {data,data2};
+		//initialize player
+		  playerNumber=2;
+		player = 1;
+		players = new Player[playerNumber];
+		for (int i = 0; i < playerNumber; i++) {
+			players[i] = new Player();
+			String str = String.valueOf(i);
+			players[i].setName(str);
+			
+		}
 		
-		stageModel.addElement(dataIcons[1]);
-			stageModel.addElement(dataIcons[0]);
-			stageModel.addElement(data3);
-			stageModel.addElement(data2);
-			stageModel.addElement(data4);
-			stageModel.addElement(data5);
-			stageModel.addElement(data6);
-			stageModel.addElement(data7);
-			stageModel.addElement(data8);
-			playerRackModel.addElement(dataIcons[1]);
-		for(int i= 0; i<4;i++){
+		//deliver tiles
+		tgs = new TileGameSet(playerNumber);
+		for(int i =0;i<14;i++){
+			for (int j = 0; j < playerNumber;j++) {
+				 Arena at = players[j].getRack(Arena.ArenaState.CURRENT);
+				at.appendTile(tgs.getNextTile());
+			}
+		}
+		for(int i= 0; i<49;i++){
 			
 			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
-			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
-			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
-			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT ));
-			
-			stageModel.addElement( new Tile( TileBaseSet.getTilePrototype( TileSymbol.MERCURY, TileColor.RED), TileOrientation.UPRIGHT ));
-			
+				
 		}
 		
 		
@@ -102,6 +101,25 @@ public class GameRoomFrame extends JInternalFrame {
 		revertMovesButton = new JButton( Resource.getString( "viciscycle.gui.revertMoves" ) );
 		abandonGameButton = new JButton( Resource.getString( "viciscycle.gui.abandonGame" ) );
 		
+		drawTileButton.addActionListener(new  ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				DefaultListModel rackModel =(DefaultListModel) rack.getModel();
+				if(tgs.hasNextTile()){
+						rackModel.addElement(tgs.getNextTile());
+				}
+				mainGame();
+			}
+		});
+		confirmMovesButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				nextPlayer();
+				mainGame();
+			}
+		});
 		Font font = Resource.getFont( Font.PLAIN, 18 );
 		setFont( font );
 		tilesRemainingLabel.setFont( font );
@@ -143,11 +161,25 @@ public class GameRoomFrame extends JInternalFrame {
 		GameRoomFrame.mainGame();
 		
 	}
+	public static void nextPlayer(){
+		player +=1;
+				if(player >playerNumber){
+					player = 1;
+				}
+	}
 	public static void mainGame(){
 		
 		DefaultListModel rackModel =(DefaultListModel) rack.getModel();
 		DefaultListModel stageModel =(DefaultListModel) stage.getModel();
-		tilesRemainingLabel.setText( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : "+rackModel.getSize());
+		//show tiles
+		rackModel.clear();
+		
+		Arena at = players[player].getRack(Arena.ArenaState.CURRENT);
+		for (int i = 0; i < at.getSize(); i++) {
+			rackModel.add(i, at.getTile(i));
+		}
+		//show misc information
+		tilesRemainingLabel.setText( Resource.getString( "viciscycle.gui.tilesRemaining" ) + " : "+rackModel.getSize()+"Player :"+players[player].getName());
 		Tile t;
 		//auto -rearrange empty tile
 		/*for (int i = 0; i < stageModel.getSize(); i++) {
@@ -187,8 +219,27 @@ public class GameRoomFrame extends JInternalFrame {
 			
 		}
 		highlightTile();
+		if(rackModel.getSize()==0){
+			boolean allHighlight = true;
+			/*for (int i = 1; i < 10; i++) {
+				Tile tile  = (Tile)rackModel.getElementAt(i);
+				if(!tile.isHigtlight()&&!tile.getTilePrototype().getTileSymbol().equals(TileSymbol.EMPTY)){
+					allHighlight = false;
+					break;
+				}
+					
+			}*/
+			if(allHighlight==true){
+				JOptionPane.showMessageDialog(null, "Game finished!!");
+				stage.setDragEnabled(false);
+			}
+		}
 		stage.repaint();
 		rack.repaint();
+		
+	}
+	public static Player getPlayer(){
+		return players[player];
 	}
 	public static void highlightTile(){
 		DefaultListModel m = (DefaultListModel)stage.getModel();
@@ -200,19 +251,23 @@ public class GameRoomFrame extends JInternalFrame {
 		stageLayeredPane.setLayout(overlay);
 		
 		stageLayeredPane.add(stage, new Integer(0));
-		
-
+		for (int i = 0; i < m.size()-1; i++) {
+			Tile t = (Tile)m.getElementAt(i);
+			t.setHighlight(false);
+		}
 		for (int i = 0; i < m.size()-1; i++) {
 			//for (int j = 0; j < 7; j++) {
 			tileSeries[0] = (Tile) m.getElementAt(i);
 			tileSeries[1] = (Tile) m.getElementAt(i+1);
-			if (i % 7 == 0) {
+			if (i % 7 == 0 ||(tileSeries[0].getTilePrototype().getTileSymbol().getSymbol())==TileSymbol.EMPTY) {
+				
 				patternLength = 0;
 				colorPatternLength = 0;
 			}
-			
+		
 			if(tileSeries[0].getTilePrototype().getTileSymbol().getNextTileSymbol()
-					.equals(tileSeries[1].getTilePrototype().getTileSymbol())){
+					.equals(tileSeries[1].getTilePrototype().getTileSymbol())
+					){
 				patternLength++;
 			}else{
 				if (patternLength >= 2) {
@@ -221,7 +276,13 @@ public class GameRoomFrame extends JInternalFrame {
 					highlightPanel.add(hr);
 					
 					stageLayeredPane.add(hr, new Integer(3));
+					
+					for (int j = i%7-patternLength; j < i%7; j++) {
+						Tile y=(Tile)m.elementAt(j);
+						y.setHighlight(true);
+					}
 					patternLength = 0;
+					colorPatternLength = 0;
 				}
 			}
 			if(tileSeries[0].getTilePrototype().getTileColor().getNextTileColor()
@@ -234,7 +295,13 @@ public class GameRoomFrame extends JInternalFrame {
 					highlightPanel.add(hr);
 					
 					stageLayeredPane.add(hr, new Integer(3));
+					
+					for (int j = i%7-colorPatternLength; j < i%7; j++) {
+						Tile y=(Tile)m.elementAt(j);
+						y.setHighlight(true);
+					}
 					colorPatternLength = 0;
+					patternLength = 0;
 				}
 			}
 			
@@ -258,4 +325,9 @@ public class GameRoomFrame extends JInternalFrame {
 	
 	private DefaultListModel stageModel;
 	private DefaultListModel playerRackModel;
+	private TileGameSet tgs;
+	private static Player[] players;
+	private static int player;
+	
+	private static  int playerNumber;
 }

@@ -76,6 +76,15 @@ public class Tile implements Icon {
 	public TilePosition getPosition(){
 		return this.position;
 	}
+	public TileOrientation getOrientation(){
+		return this.orientation;
+	}
+	public void setHighlight(boolean b){
+		this.highlight = b;
+	}
+	public boolean isHigtlight(){
+		return  this.highlight;
+	}
 	public enum TilePosition{
 		FRONT,IN_BETWEEN,BACK
 	}
@@ -83,4 +92,5 @@ public class Tile implements Icon {
 	private TileOrientation orientation;
 	private Image tileImage;
 	private TilePosition position;
+	private boolean highlight;
 }
