@@ -46,7 +46,7 @@ public class GameRoomFrame extends JInternalFrame {
 		
 		//initialize player
 		  playerNumber=2;
-		player = 1;
+		player = 0;
 		players = new Player[playerNumber];
 		for (int i = 0; i < playerNumber; i++) {
 			players[i] = new Player();
@@ -105,9 +105,11 @@ public class GameRoomFrame extends JInternalFrame {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				DefaultListModel rackModel =(DefaultListModel) rack.getModel();
+				Arena at = players[player].getRack(Arena.ArenaState.CURRENT);
+				
 				if(tgs.hasNextTile()){
-						rackModel.addElement(tgs.getNextTile());
+						at.appendTile(tgs.getNextTile());
+						
 				}
 				mainGame();
 			}
@@ -163,8 +165,8 @@ public class GameRoomFrame extends JInternalFrame {
 	}
 	public static void nextPlayer(){
 		player +=1;
-				if(player >playerNumber){
-					player = 1;
+				if(player >playerNumber-1){
+					player = 0;
 				}
 	}
 	public static void mainGame(){

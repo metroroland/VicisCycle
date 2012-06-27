@@ -78,6 +78,7 @@ public class TileTransferHandler extends TransferHandler {
 				if (dragSource.equals(GameRoomFrame.stage)&&!dragSource.equals(dropTarget) ) {
 					Tile t = new Tile( TileBaseSet.getTilePrototype( TileSymbol.EMPTY, TileColor.EMPTY), TileOrientation.UPRIGHT );
 					model.add(selectedIndices[i], t);
+					
 				}
 					
 				try{
@@ -173,6 +174,11 @@ public class TileTransferHandler extends TransferHandler {
 					}
 				}
 				model.add(index, image);
+				if(dropTarget.equals(GameRoomFrame.rack)){
+					Player p = GameRoomFrame.getPlayer();
+					Arena at = p.getRack(Arena.ArenaState.CURRENT);
+					at.appendTile(image);
+				}
 				index++;
 			}
 			return true;
